@@ -9,7 +9,7 @@ import { randomBytes } from 'node:crypto';
 import {
   HttpError, hashPassword, verifyPassword, verifyAgainstDummy, startSession, endSession,
   loadUser, requireRole, assertLoginAllowed, reserveLoginAttempt, clearLoginFailures, randomId,
-  withPasswordSlot, tooLongForBcrypt,
+  withPasswordSlot, passwordTooLong,
 } from './auth.js';
 import { TYPES, STATUS_LABEL, TRANSITIONS, ACTIVE, validatePayload, describePayload } from './applicationTypes.js';
 import { createSchedule } from './schedule.js';
@@ -97,7 +97,7 @@ export function createApp(db) {
     const login = clean(req.body?.login).toLowerCase();
     const password = String(req.body?.password ?? '');
     if (!login || !password) throw new HttpError(400, 'Введите логин и пароль');
-    if (login.length > 64 || tooLongForBcrypt(password)) throw new HttpError(400, 'Слишком длинное значение');
+    if (login.length > 64 || passwordTooLong(password)) throw new HttpError(400, 'Слишком длинное значение');
     assertLoginAllowed(db, login, req.ip);
     const attempt = reserveLoginAttempt(db, login, req.ip);   // засчитываем попытку до проверки пароля
     const user = db.get('SELECT id, password_hash FROM users WHERE login = ?', login);
@@ -106,7 +106,7 @@ export function createApp(db) {
       await verifyAgainstDummy(password);
       return false;
     });
-    // Пока считался bcrypt, пароль могли сменить: сессию выдаём, только если хеш всё тот же.
+    // Пока считался хеш, пароль могли сменить: сессию выдаём, только если запись в базе всё та же.
     const stillValid = ok && db.get('SELECT 1 AS x FROM users WHERE id = ? AND password_hash = ?', user.id, user.password_hash);
     if (!stillValid) throw new HttpError(401, 'Неверный логин или пароль');
     clearLoginFailures(db, login, req.ip, attempt);
@@ -126,9 +126,9 @@ export function createApp(db) {
     const current = String(req.body?.current ?? '');
     const next = String(req.body?.next ?? '');
     if (next.length < 8) throw new HttpError(400, 'Новый пароль — от 8 символов', { fields: { next: 'От 8 символов' } });
-    if (tooLongForBcrypt(next)) throw new HttpError(400, 'Новый пароль слишком длинный', { fields: { next: 'Не длиннее 72 байт (около 36 русских букв)' } });
+    if (passwordTooLong(next)) throw new HttpError(400, 'Новый пароль слишком длинный', { fields: { next: 'Не длиннее 72 байт (около 36 русских букв)' } });
     const row = db.get('SELECT password_hash FROM users WHERE id = ?', req.user.id);
-    const matches = !tooLongForBcrypt(current) && await withPasswordSlot(() => verifyPassword(current, row.password_hash));
+    const matches = !passwordTooLong(current) && await withPasswordSlot(() => verifyPassword(current, row.password_hash));
     if (!matches) throw new HttpError(400, 'Текущий пароль не подходит', { fields: { current: 'Не подходит' } });
     const fresh = await withPasswordSlot(() => hashPassword(next));
     // Меняем только если хеш всё ещё прежний, и в той же транзакции закрываем остальные сеансы.

@@ -26,7 +26,7 @@ test('верный пароль: 200 и cookie deka_sid с HttpOnly и SameSite=
   assert.equal(wrong.body.error.message, nobody.body.error.message);
 });
 
-test('пароли в БД — bcrypt-хеши, сессии хранятся без токена в открытом виде', async () => {
+test('пароли в БД — scrypt-хеши, сессии хранятся без токена в открытом виде', async () => {
   const c = await login(app.base, 'student1', PASSWORDS.student1);
   const token = decodeURIComponent(c.cookie.split('=')[1]);
   const users = app.db.all('SELECT login, password_hash FROM users');
@@ -34,7 +34,7 @@ test('пароли в БД — bcrypt-хеши, сессии хранятся б
   const plain = Object.values(PASSWORDS);
   for (const u of users) {
     assert.ok(!plain.includes(u.password_hash), `пароль ${u.login} лежит открытым текстом`);
-    assert.ok(u.password_hash.startsWith('$2'), `хеш ${u.login} не bcrypt`);
+    assert.ok(u.password_hash.startsWith('scrypt$'), `хеш ${u.login} не scrypt`);
   }
   const sessions = app.db.all('SELECT id_hash FROM sessions');
   assert.ok(sessions.length > 0);

@@ -15,7 +15,6 @@
     "validate-seed": "node scripts/validate-seed.mjs"
   },
   "dependencies": {
-    "bcryptjs": "^3.0.3",
     "express": "^5.3.0",
     "helmet": "^8.3.0"
   },

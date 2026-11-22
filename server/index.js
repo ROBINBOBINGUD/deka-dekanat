@@ -15,9 +15,14 @@ const DATA_DIR = process.env.DATA_DIR || (process.env.AMVERA ? '/data' : join(im
 mkdirSync(DATA_DIR, { recursive: true });
 const db = openDb(join(DATA_DIR, 'deka.db'));
 
-if (db.get('SELECT COUNT(*) AS n FROM users').n === 0 || process.env.RESEED === '1') {
+// Версия сида: когда меняется способ хранения (например, алгоритм хеша паролей), её поднимают,
+// и демо-стенд сам пересоздаёт вымышленные данные при следующем запуске.
+const SEED_VERSION = '2';
+const seeded = db.get("SELECT value FROM meta WHERE key = 'seed_version'")?.value;
+if (db.get('SELECT COUNT(*) AS n FROM users').n === 0 || seeded !== SEED_VERSION || process.env.RESEED === '1') {
   const { data, accounts } = loadSeedFiles();
   await seedDatabase(db, data, accounts);
+  db.run("INSERT OR REPLACE INTO meta (key, value) VALUES ('seed_version', ?)", SEED_VERSION);
   console.log('БД заполнена вымышленными данными из seed/data.json');
 }
 

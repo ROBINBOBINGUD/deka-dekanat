@@ -16,7 +16,7 @@ export const PASSWORDS = {
 export const NOW = '2026-11-24T10:05';
 
 export async function startApp() {
-  process.env.BCRYPT_COST = '4';
+  process.env.SCRYPT_N = '1024';   // в тестах хеш дешёвый, чтобы набор шёл секунды
   process.env.DEKA_NOW = NOW;
   const { openDb } = await import(src('server/db.js'));
   const { createApp } = await import(src('server/app.js'));

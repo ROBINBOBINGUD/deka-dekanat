@@ -1,7 +1,6 @@
 // Вход, сессии, пароли, ограничение попыток.
 
-import bcrypt from 'bcryptjs';
-import { randomBytes, createHash } from 'node:crypto';
+import { randomBytes, createHash, scrypt, timingSafeEqual } from 'node:crypto';
 import { nowMsk } from './time.js';
 
 export const COOKIE = 'deka_sid';
@@ -10,9 +9,27 @@ const WINDOW_MS = 10 * 60 * 1000;
 const MAX_FAILS = 5;        // на пару «логин + IP»
 const MAX_FAILS_IP = 30;    // на один IP по всем логинам
 
-const cost = () => Number(process.env.BCRYPT_COST || 11);
-export const hashPassword = (pw) => bcrypt.hash(pw, cost());
-export const verifyPassword = (pw, hash) => bcrypt.compare(pw, hash);
+// Пароли хешируются алгоритмом scrypt, встроенным в Node (node:crypto). Он считается в нативном коде
+// и в отдельном потоке: вход не «подвешивает» сервер даже на слабом процессоре.
+// Первая версия использовала bcryptjs (чистый JavaScript): на тарифе с 0,25 ядра вход занимал 10–30 секунд.
+// Формат записи: scrypt$N$соль$хеш — параметр стоимости хранится рядом, его можно поднимать без миграции.
+const scryptCost = () => Number(process.env.SCRYPT_N || 16384);
+const derive = (pw, salt, n) => new Promise((resolve, reject) => {
+  scrypt(pw, salt, 32, { N: n, r: 8, p: 1, maxmem: 256 * n * 8 }, (err, key) => (err ? reject(err) : resolve(key)));
+});
+export async function hashPassword(pw) {
+  const salt = randomBytes(16);
+  const n = scryptCost();
+  const key = await derive(pw, salt, n);
+  return `scrypt$${n}$${salt.toString('base64url')}$${key.toString('base64url')}`;
+}
+export async function verifyPassword(pw, stored) {
+  const [alg, n, salt, key] = String(stored ?? '').split('$');
+  if (alg !== 'scrypt' || !salt || !key) return false;
+  const expected = Buffer.from(key, 'base64url');
+  const actual = await derive(pw, Buffer.from(salt, 'base64url'), Number(n));
+  return actual.length === expected.length && timingSafeEqual(actual, expected);
+}
 
 const sha256 = (s) => createHash('sha256').update(s).digest('hex');
 export const randomId = (bytes = 9) => randomBytes(bytes).toString('base64url');
@@ -91,7 +108,7 @@ export function assertLoginAllowed(db, login, ip) {
 
 /**
  * Попытка записывается ДО проверки пароля: параллельные запросы не могут все разом
- * пройти лимит, пока bcrypt ещё считает. Возвращает метку, по которой попытку можно снять.
+ * пройти лимит, пока хеш ещё считается. Возвращает метку, по которой попытку можно снять.
  */
 export function reserveLoginAttempt(db, login, ip) {
   const at = Date.now() * 1000 + Math.floor(Math.random() * 1000);   // уникальна в пределах миллисекунды
@@ -106,7 +123,8 @@ export function clearLoginFailures(db, login, ip, at) {
   if (at !== undefined) db.run('DELETE FROM login_attempts WHERE key = ? AND at = ?', `ip:${ip}`, at);
 }
 
-// Одновременно считаем не больше нескольких bcrypt: вход нельзя превратить в нагрузку на процессор.
+// Одновременно считаем не больше нескольких хешей (каждый занимает 16 МБ памяти и процессор):
+// вход нельзя превратить в нагрузку на сервер.
 const MAX_PARALLEL_CHECKS = 6;
 let activeChecks = 0;
 export async function withPasswordSlot(fn) {
@@ -117,8 +135,8 @@ export async function withPasswordSlot(fn) {
   try { return await fn(); } finally { activeChecks--; }
 }
 
-/** bcrypt учитывает только первые 72 байта пароля — длиннее не принимаем, чтобы «хвост» не игнорировался молча. */
-export const tooLongForBcrypt = (pw) => Buffer.byteLength(pw, 'utf8') > 72;
+/** Предел длины пароля — 72 байта: длиннее не принимаем, чтобы запросом нельзя было заставить сервер хешировать мегабайты. */
+export const passwordTooLong = (pw) => Buffer.byteLength(pw, 'utf8') > 72;
 
 export function cleanup(db) {
   db.run('DELETE FROM sessions WHERE expires_at < ?', Date.now());
