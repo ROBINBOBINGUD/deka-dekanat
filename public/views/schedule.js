@@ -17,7 +17,11 @@ function pairRow(item, live) {
           ${item.room && html`<span class="pair-room">${icon('map-pin')}${item.room}</span>`}
           ${item.teacher && html`<span title="${item.teacher.name}, ${item.teacher.title ?? ''}">${icon('user')}${shortName(item.teacher.name)}</span>`}
         </p>
-        ${item.change && html`<p class="pair-change"><span class="mark">${cap(changeText(item))}</span>${item.change.note ? ` ${item.change.note}` : ''}</p>`}
+        ${item.change && html`<p class="pair-change">
+          ${item.change.type === 'replace' && item.change.was
+            ? html`<span class="mark">Замена</span> было: ${item.change.was}`
+            : html`<span class="mark">${cap(changeText(item))}</span>`}
+          ${item.change.note ? html`<span class="change-note">${item.change.note}</span>` : ''}</p>`}
         ${live && html`<p class="pair-change pair-live">Идёт сейчас</p>`}
       </div>
     </li>`;

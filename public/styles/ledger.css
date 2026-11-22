@@ -103,6 +103,9 @@ a.chip { padding-inline: 12px; }
 .msg small { margin: 0 0 4px; font-size: 13px; font-weight: 600; color: var(--muted); }
 .msg--mine small { color: var(--stamp); }
 
+/* кабинет сотрудника на телефоне: кнопки изменения пары не уходят в три строки */
+@media (max-width: 599px) { .lesson-tools { padding-left: 0; } }
+
 /* вход на телефоне: форма выше, без перечня преимуществ */
 @media (max-width: 899px) {
   .auth-brand { padding: 24px 24px 20px; }
