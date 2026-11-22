@@ -1,0 +1,12 @@
+# Конфигурация деплоя на Amvera Cloud (https://docs.amvera.ru/applications/environments/nodejs-server.html).
+# Сборка идёт на стороне площадки: образ node:24, затем npm install. Локальный Docker не нужен.
+meta:
+  environment: node
+  toolchain:
+    name: npm
+    version: 24
+run:
+  scriptName: server/index.js
+  # Постоянный диск: здесь лежит файл SQLite, он переживает пересборки и перезапуски.
+  persistenceMount: /data
+  containerPort: 3000

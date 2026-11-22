@@ -1,0 +1,13 @@
+{
+  "name": "Дека — цифровой деканат",
+  "short_name": "Дека",
+  "description": "Концепт личного кабинета студента для конкурса MGIMO×AI Challenge",
+  "lang": "ru",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F3F5FA",
+  "theme_color": "#16224A",
+  "icons": [
+    { "src": "/logo.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}

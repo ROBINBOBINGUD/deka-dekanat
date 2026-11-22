@@ -7,7 +7,8 @@ import { createApp } from './app.js';
 import { cleanup } from './auth.js';
 import { seedDatabase, loadSeedFiles } from '../seed/seed.js';
 
-const PORT = Number(process.env.PORT || 3000);
+// На Amvera приложение обязано слушать порт из amvera.yml (run.containerPort = 3000).
+const PORT = Number(process.env.DEKA_PORT || (process.env.AMVERA ? 3000 : process.env.PORT || 3000));
 // На Amvera постоянный диск смонтирован в /data; локально — папка ./data рядом с проектом.
 const DATA_DIR = process.env.DATA_DIR || (process.env.AMVERA ? '/data' : join(import.meta.dirname, '..', 'data'));
 

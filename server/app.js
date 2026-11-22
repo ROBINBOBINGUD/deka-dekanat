@@ -262,7 +262,7 @@ export function createApp(db) {
     const types = Object.entries(TYPES).map(([code, t]) => ({
       code, title: t.title, icon: t.icon, eta: t.eta, about: t.about,
       fields: t.fields.map((f) => f.type === 'debt'
-        ? { ...f, options: debts.map((d) => ({ value: d.id, label: `${d.name} · ${d.semester} семестр` })) }
+        ? { ...f, options: debts.map((d) => ({ value: d.id, label: `${d.name}, ${d.semester} семестр` })) }
         : f),
       unavailable: code === 'retake' && debts.length === 0 ? 'Задолженностей нет — пересдавать нечего.' : null,
     }));
@@ -295,7 +295,7 @@ export function createApp(db) {
   });
 
   api.get('/applications/:pid', requireRole('student'), (req, res) => {
-    res.json({ application: serializeApp(ownApp(req), req.user.id, true) });
+    res.json({ application: serializeApp(ownApp(req), req.user.id, true), today: nowMsk().date });
   });
 
   api.post('/applications/:pid/cancel', requireRole('student'), (req, res) => {
@@ -333,7 +333,7 @@ export function createApp(db) {
     const rows = db.all(
       `SELECT id, kind, title, body, link, created_at AS at, read_at AS readAt
          FROM notifications WHERE user_id = ? ORDER BY created_at DESC, id DESC LIMIT 100`, req.user.id);
-    res.json({ notifications: rows.map((r) => ({ ...r, unread: !r.readAt })), unread: unreadCount(req.user.id) });
+    res.json({ notifications: rows.map((r) => ({ ...r, unread: !r.readAt })), unread: unreadCount(req.user.id), today: nowMsk().date });
   });
 
   api.post('/notifications/read-all', requireRole(), (req, res) => {
@@ -373,9 +373,10 @@ export function createApp(db) {
     }
 
     const week = schedule.range(ctx.groupCode, now.date, 7);
-    const changes = week.flatMap((d) => d.items.filter((i) => i.change).map((i) => ({
+    // Перенос показываем один раз — там, откуда пара ушла (а не ещё и там, куда пришла).
+    const changes = week.flatMap((d) => d.items.filter((i) => i.change && i.change.type !== 'moved_in').map((i) => ({
       date: d.date, pair: i.pair, start: i.start, subject: i.subject.name, change: i.change, room: i.room,
-    })));
+    }))).slice(0, 5);
 
     const deadlines = myDeadlines(ctx, now.iso).slice(0, 4).map((d) => ({ ...d, daysLeft: daysBetween(now.date, d.due) }));
     const grades = buildGrades(db, req.user.id, now.date);

@@ -1,0 +1,6 @@
+node_modules
+data
+.git
+docs/screens
+tests
+*.log
