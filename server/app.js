@@ -624,6 +624,12 @@ export function createApp(db) {
   api.use((_req, _res) => { throw new HttpError(404, 'Такого адреса в API нет'); });
   app.use('/api', api);
 
+  // Описание процесса создания — тот же PDF, что лежит в репозитории, по постоянной ссылке со стенда.
+  app.get('/opisanie.pdf', (_req, res) => {
+    res.setHeader('Cache-Control', 'no-cache');
+    res.type('application/pdf').sendFile(join(PUBLIC_DIR, '..', 'docs', 'Описание.pdf'));
+  });
+
   // ————————————————————— клиент —————————————————————
   app.use(express.static(PUBLIC_DIR, {
     index: false,
