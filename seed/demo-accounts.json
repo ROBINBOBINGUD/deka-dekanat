@@ -1,0 +1,14 @@
+{
+  "student1": {
+    "role": "student",
+    "password": "Deka-ZJ2K-Q456"
+  },
+  "student2": {
+    "role": "student",
+    "password": "Deka-CES8-BR4N"
+  },
+  "dekanat": {
+    "role": "staff",
+    "password": "Deka-M67R-AQET"
+  }
+}

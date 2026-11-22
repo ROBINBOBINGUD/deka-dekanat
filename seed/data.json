@@ -1,0 +1,3051 @@
+{
+  "university": {
+    "short": "ДПИ НГТУ",
+    "full": "Дзержинский политехнический институт (филиал) НГТУ им. Р.Е. Алексеева",
+    "city": "Дзержинск"
+  },
+  "bells": [
+    {
+      "pair": 1,
+      "start": "08:00",
+      "end": "09:35"
+    },
+    {
+      "pair": 2,
+      "start": "09:45",
+      "end": "11:20"
+    },
+    {
+      "pair": 3,
+      "start": "11:50",
+      "end": "13:25"
+    },
+    {
+      "pair": 4,
+      "start": "13:35",
+      "end": "15:10"
+    },
+    {
+      "pair": 5,
+      "start": "15:20",
+      "end": "16:55"
+    },
+    {
+      "pair": 6,
+      "start": "17:05",
+      "end": "18:40"
+    }
+  ],
+  "teachers": [
+    {
+      "id": "t1",
+      "name": "Воронцов Игорь Анатольевич",
+      "title": "профессор"
+    },
+    {
+      "id": "t2",
+      "name": "Кравец Марина Олеговна",
+      "title": "доцент"
+    },
+    {
+      "id": "t3",
+      "name": "Шестаков Денис Павлович",
+      "title": "доцент"
+    },
+    {
+      "id": "t4",
+      "name": "Лаврова Ирина Сергеевна",
+      "title": "старший преподаватель"
+    },
+    {
+      "id": "t5",
+      "name": "Бочаров Александр Витальевич",
+      "title": "профессор"
+    },
+    {
+      "id": "t6",
+      "name": "Зуева Татьяна Николаевна",
+      "title": "доцент"
+    },
+    {
+      "id": "t7",
+      "name": "Островская Елена Ивановна",
+      "title": "старший преподаватель"
+    },
+    {
+      "id": "t8",
+      "name": "Малинин Сергей Григорьевич",
+      "title": "доцент"
+    },
+    {
+      "id": "t9",
+      "name": "Тихомиров Валерий Борисович",
+      "title": "профессор"
+    },
+    {
+      "id": "t10",
+      "name": "Агеева Людмила Петровна",
+      "title": "доцент"
+    },
+    {
+      "id": "t11",
+      "name": "Соловьёв Кирилл Андреевич",
+      "title": "доцент"
+    },
+    {
+      "id": "t12",
+      "name": "Назарова Оксана Викторовна",
+      "title": "ассистент"
+    },
+    {
+      "id": "t13",
+      "name": "Рябов Георгий Тимофеевич",
+      "title": "доцент"
+    },
+    {
+      "id": "t14",
+      "name": "Фролов Артём Денисович",
+      "title": "ассистент"
+    }
+  ],
+  "subjects": [
+    {
+      "id": "s1",
+      "name": "Базы данных",
+      "short": "БД"
+    },
+    {
+      "id": "s2",
+      "name": "Алгоритмы и структуры данных",
+      "short": "АиСД"
+    },
+    {
+      "id": "s3",
+      "name": "Операционные системы",
+      "short": "ОС"
+    },
+    {
+      "id": "s4",
+      "name": "Веб-технологии",
+      "short": "Веб"
+    },
+    {
+      "id": "s5",
+      "name": "Теория вероятностей и математическая статистика",
+      "short": "ТВиМС"
+    },
+    {
+      "id": "s6",
+      "name": "Дискретная математика",
+      "short": "ДМ"
+    },
+    {
+      "id": "s7",
+      "name": "Иностранный язык",
+      "short": "ИЯ"
+    },
+    {
+      "id": "s8",
+      "name": "Физическая культура",
+      "short": "Физкультура"
+    },
+    {
+      "id": "s9",
+      "name": "Философия",
+      "short": "Философия"
+    },
+    {
+      "id": "s10",
+      "name": "Математический анализ",
+      "short": "Матан"
+    },
+    {
+      "id": "s11",
+      "name": "Линейная алгебра",
+      "short": "Линал"
+    },
+    {
+      "id": "s12",
+      "name": "Программирование",
+      "short": "Прог"
+    },
+    {
+      "id": "s13",
+      "name": "Информатика",
+      "short": "Информатика"
+    },
+    {
+      "id": "s14",
+      "name": "История России",
+      "short": "История"
+    },
+    {
+      "id": "s15",
+      "name": "Физика",
+      "short": "Физика"
+    },
+    {
+      "id": "s16",
+      "name": "Процессы и аппараты химической технологии",
+      "short": "ПАХТ"
+    },
+    {
+      "id": "s17",
+      "name": "Физическая химия",
+      "short": "Физхимия"
+    },
+    {
+      "id": "s18",
+      "name": "Органическая химия",
+      "short": "Орг. химия"
+    },
+    {
+      "id": "s19",
+      "name": "Общая химическая технология",
+      "short": "ОХТ"
+    },
+    {
+      "id": "s20",
+      "name": "Аналитическая химия",
+      "short": "Анхимия"
+    },
+    {
+      "id": "s21",
+      "name": "Инженерная графика",
+      "short": "Инж. графика"
+    },
+    {
+      "id": "s22",
+      "name": "Безопасность жизнедеятельности",
+      "short": "БЖД"
+    },
+    {
+      "id": "s23",
+      "name": "Экономика предприятия",
+      "short": "Экономика"
+    },
+    {
+      "id": "s24",
+      "name": "Общая и неорганическая химия",
+      "short": "ОНХ"
+    },
+    {
+      "id": "s25",
+      "name": "Высшая математика",
+      "short": "Высшая мат."
+    },
+    {
+      "id": "s26",
+      "name": "Электротехника и электроника",
+      "short": "ЭиЭ"
+    }
+  ],
+  "groups": [
+    {
+      "code": "25-ИСТ",
+      "faculty": "Факультет информационных технологий и экономики",
+      "facultyShort": "ФИТЭ",
+      "programCode": "09.03.02",
+      "programName": "Информационные системы и технологии",
+      "course": 2,
+      "curator": "t3"
+    },
+    {
+      "code": "24-ХТ",
+      "faculty": "Инженерно-технологический факультет",
+      "facultyShort": "ИТФ",
+      "programCode": "18.03.01",
+      "programName": "Химическая технология",
+      "course": 3,
+      "curator": "t10"
+    }
+  ],
+  "students": [
+    {
+      "key": "A",
+      "login": "student1",
+      "fullName": "Ситников Матвей Андреевич",
+      "group": "25-ИСТ",
+      "recordBook": "25-0417",
+      "studyForm": "очная",
+      "funding": "бюджет",
+      "admissionYear": 2025,
+      "email": "sitnikov.ma@example.edu"
+    },
+    {
+      "key": "B",
+      "login": "student2",
+      "fullName": "Комаров Егор Дмитриевич",
+      "group": "24-ХТ",
+      "recordBook": "24-0193",
+      "studyForm": "очная",
+      "funding": "бюджет",
+      "admissionYear": 2024,
+      "email": "komarov.ed@example.edu"
+    }
+  ],
+  "staff": [
+    {
+      "key": "D",
+      "login": "dekanat",
+      "fullName": "Карпова Надежда Леонидовна",
+      "position": "специалист деканата",
+      "faculty": "ФИТЭ"
+    }
+  ],
+  "lessons": [
+    {
+      "group": "25-ИСТ",
+      "weekday": 1,
+      "pair": 2,
+      "parity": "all",
+      "subject": "s5",
+      "kind": "lecture",
+      "teacher": "t5",
+      "room": "1-204"
+    },
+    {
+      "group": "25-ИСТ",
+      "weekday": 1,
+      "pair": 3,
+      "parity": "all",
+      "subject": "s2",
+      "kind": "lecture",
+      "teacher": "t2",
+      "room": "1-204"
+    },
+    {
+      "group": "25-ИСТ",
+      "weekday": 1,
+      "pair": 4,
+      "parity": "odd",
+      "subject": "s7",
+      "kind": "practice",
+      "teacher": "t7",
+      "room": "2-112"
+    },
+    {
+      "group": "25-ИСТ",
+      "weekday": 1,
+      "pair": 4,
+      "parity": "even",
+      "subject": "s6",
+      "kind": "practice",
+      "teacher": "t6",
+      "room": "1-308"
+    },
+    {
+      "group": "25-ИСТ",
+      "weekday": 2,
+      "pair": 1,
+      "parity": "all",
+      "subject": "s1",
+      "kind": "lecture",
+      "teacher": "t1",
+      "room": "3-117"
+    },
+    {
+      "group": "25-ИСТ",
+      "weekday": 2,
+      "pair": 2,
+      "parity": "odd",
+      "subject": "s1",
+      "kind": "lab",
+      "teacher": "t1",
+      "room": "лаб. 3-05"
+    },
+    {
+      "group": "25-ИСТ",
+      "weekday": 2,
+      "pair": 2,
+      "parity": "even",
+      "subject": "s3",
+      "kind": "lab",
+      "teacher": "t3",
+      "room": "лаб. 2-05"
+    },
+    {
+      "group": "25-ИСТ",
+      "weekday": 2,
+      "pair": 3,
+      "parity": "all",
+      "subject": "s4",
+      "kind": "lab",
+      "teacher": "t4",
+      "room": "лаб. 2-07"
+    },
+    {
+      "group": "25-ИСТ",
+      "weekday": 3,
+      "pair": 2,
+      "parity": "all",
+      "subject": "s6",
+      "kind": "lecture",
+      "teacher": "t6",
+      "room": "1-204"
+    },
+    {
+      "group": "25-ИСТ",
+      "weekday": 3,
+      "pair": 3,
+      "parity": "all",
+      "subject": "s5",
+      "kind": "practice",
+      "teacher": "t5",
+      "room": "1-310"
+    },
+    {
+      "group": "25-ИСТ",
+      "weekday": 3,
+      "pair": 4,
+      "parity": "odd",
+      "subject": "s9",
+      "kind": "lecture",
+      "teacher": "t8",
+      "room": "3-117"
+    },
+    {
+      "group": "25-ИСТ",
+      "weekday": 3,
+      "pair": 4,
+      "parity": "even",
+      "subject": "s2",
+      "kind": "practice",
+      "teacher": "t2",
+      "room": "лаб. 2-07"
+    },
+    {
+      "group": "25-ИСТ",
+      "weekday": 4,
+      "pair": 1,
+      "parity": "all",
+      "subject": "s3",
+      "kind": "lecture",
+      "teacher": "t3",
+      "room": "3-117"
+    },
+    {
+      "group": "25-ИСТ",
+      "weekday": 4,
+      "pair": 2,
+      "parity": "odd",
+      "subject": "s2",
+      "kind": "practice",
+      "teacher": "t2",
+      "room": "лаб. 2-07"
+    },
+    {
+      "group": "25-ИСТ",
+      "weekday": 4,
+      "pair": 2,
+      "parity": "even",
+      "subject": "s7",
+      "kind": "practice",
+      "teacher": "t7",
+      "room": "2-112"
+    },
+    {
+      "group": "25-ИСТ",
+      "weekday": 4,
+      "pair": 3,
+      "parity": "all",
+      "subject": "s4",
+      "kind": "lecture",
+      "teacher": "t4",
+      "room": "1-204"
+    },
+    {
+      "group": "25-ИСТ",
+      "weekday": 5,
+      "pair": 1,
+      "parity": "all",
+      "subject": "s1",
+      "kind": "practice",
+      "teacher": "t1",
+      "room": "1-310"
+    },
+    {
+      "group": "25-ИСТ",
+      "weekday": 5,
+      "pair": 2,
+      "parity": "even",
+      "subject": "s9",
+      "kind": "practice",
+      "teacher": "t8",
+      "room": "1-308"
+    },
+    {
+      "group": "25-ИСТ",
+      "weekday": 5,
+      "pair": 3,
+      "parity": "odd",
+      "subject": "s3",
+      "kind": "lab",
+      "teacher": "t3",
+      "room": "лаб. 2-05"
+    },
+    {
+      "group": "25-ИСТ",
+      "weekday": 5,
+      "pair": 3,
+      "parity": "even",
+      "subject": "s1",
+      "kind": "lab",
+      "teacher": "t1",
+      "room": "лаб. 3-05"
+    },
+    {
+      "group": "24-ХТ",
+      "weekday": 1,
+      "pair": 1,
+      "parity": "all",
+      "subject": "s17",
+      "kind": "lecture",
+      "teacher": "t10",
+      "room": "2-210"
+    },
+    {
+      "group": "24-ХТ",
+      "weekday": 1,
+      "pair": 2,
+      "parity": "all",
+      "subject": "s16",
+      "kind": "lecture",
+      "teacher": "t9",
+      "room": "2-301"
+    },
+    {
+      "group": "24-ХТ",
+      "weekday": 1,
+      "pair": 3,
+      "parity": "odd",
+      "subject": "s23",
+      "kind": "practice",
+      "teacher": "t12",
+      "room": "1-415"
+    },
+    {
+      "group": "24-ХТ",
+      "weekday": 1,
+      "pair": 3,
+      "parity": "even",
+      "subject": "s22",
+      "kind": "lecture",
+      "teacher": "t13",
+      "room": "3-117"
+    },
+    {
+      "group": "24-ХТ",
+      "weekday": 2,
+      "pair": 2,
+      "parity": "all",
+      "subject": "s18",
+      "kind": "lecture",
+      "teacher": "t11",
+      "room": "2-210"
+    },
+    {
+      "group": "24-ХТ",
+      "weekday": 2,
+      "pair": 3,
+      "parity": "odd",
+      "subject": "s18",
+      "kind": "lab",
+      "teacher": "t11",
+      "room": "лаб. 2-14"
+    },
+    {
+      "group": "24-ХТ",
+      "weekday": 2,
+      "pair": 3,
+      "parity": "even",
+      "subject": "s19",
+      "kind": "lab",
+      "teacher": "t13",
+      "room": "лаб. 2-16"
+    },
+    {
+      "group": "24-ХТ",
+      "weekday": 2,
+      "pair": 4,
+      "parity": "all",
+      "subject": "s8",
+      "kind": "practice",
+      "teacher": "t14",
+      "room": "спортзал"
+    },
+    {
+      "group": "24-ХТ",
+      "weekday": 3,
+      "pair": 1,
+      "parity": "all",
+      "subject": "s19",
+      "kind": "lecture",
+      "teacher": "t13",
+      "room": "2-301"
+    },
+    {
+      "group": "24-ХТ",
+      "weekday": 3,
+      "pair": 2,
+      "parity": "odd",
+      "subject": "s17",
+      "kind": "lab",
+      "teacher": "t10",
+      "room": "лаб. 2-12"
+    },
+    {
+      "group": "24-ХТ",
+      "weekday": 3,
+      "pair": 2,
+      "parity": "even",
+      "subject": "s17",
+      "kind": "practice",
+      "teacher": "t10",
+      "room": "2-210"
+    },
+    {
+      "group": "24-ХТ",
+      "weekday": 3,
+      "pair": 3,
+      "parity": "all",
+      "subject": "s26",
+      "kind": "lecture",
+      "teacher": "t14",
+      "room": "3-117"
+    },
+    {
+      "group": "24-ХТ",
+      "weekday": 3,
+      "pair": 4,
+      "parity": "all",
+      "subject": "s23",
+      "kind": "lecture",
+      "teacher": "t12",
+      "room": "1-415"
+    },
+    {
+      "group": "24-ХТ",
+      "weekday": 4,
+      "pair": 2,
+      "parity": "all",
+      "subject": "s16",
+      "kind": "lab",
+      "teacher": "t9",
+      "room": "лаб. 2-18"
+    },
+    {
+      "group": "24-ХТ",
+      "weekday": 4,
+      "pair": 3,
+      "parity": "odd",
+      "subject": "s22",
+      "kind": "practice",
+      "teacher": "t13",
+      "room": "3-117"
+    },
+    {
+      "group": "24-ХТ",
+      "weekday": 4,
+      "pair": 4,
+      "parity": "even",
+      "subject": "s26",
+      "kind": "lab",
+      "teacher": "t14",
+      "room": "лаб. 2-20"
+    },
+    {
+      "group": "24-ХТ",
+      "weekday": 5,
+      "pair": 2,
+      "parity": "all",
+      "subject": "s19",
+      "kind": "practice",
+      "teacher": "t13",
+      "room": "2-301"
+    },
+    {
+      "group": "24-ХТ",
+      "weekday": 5,
+      "pair": 3,
+      "parity": "even",
+      "subject": "s18",
+      "kind": "practice",
+      "teacher": "t11",
+      "room": "2-210"
+    },
+    {
+      "group": "24-ХТ",
+      "weekday": 5,
+      "pair": 3,
+      "parity": "odd",
+      "subject": "s16",
+      "kind": "practice",
+      "teacher": "t9",
+      "room": "2-301"
+    },
+    {
+      "group": "24-ХТ",
+      "weekday": 5,
+      "pair": 4,
+      "parity": "all",
+      "subject": "s8",
+      "kind": "practice",
+      "teacher": "t14",
+      "room": "спортзал"
+    },
+    {
+      "group": "24-ХТ",
+      "weekday": 6,
+      "pair": 1,
+      "parity": "odd",
+      "subject": "s17",
+      "kind": "lab",
+      "teacher": "t10",
+      "room": "лаб. 2-12"
+    },
+    {
+      "group": "24-ХТ",
+      "weekday": 6,
+      "pair": 1,
+      "parity": "even",
+      "subject": "s19",
+      "kind": "lab",
+      "teacher": "t13",
+      "room": "лаб. 2-16"
+    },
+    {
+      "group": "24-ХТ",
+      "weekday": 6,
+      "pair": 2,
+      "parity": "even",
+      "subject": "s23",
+      "kind": "practice",
+      "teacher": "t12",
+      "room": "1-415"
+    }
+  ],
+  "changes": [
+    {
+      "group": "25-ИСТ",
+      "date": "2026-11-23",
+      "pair": 2,
+      "type": "room",
+      "room": "3-117",
+      "note": "Ремонт в аудитории 1-204, лекция пройдёт в 3-117"
+    },
+    {
+      "group": "25-ИСТ",
+      "date": "2026-11-24",
+      "pair": 3,
+      "type": "cancel",
+      "note": "Преподаватель заболел, лабораторная по веб-технологиям отменена"
+    },
+    {
+      "group": "25-ИСТ",
+      "date": "2026-11-26",
+      "pair": 1,
+      "type": "replace",
+      "teacher": "t4",
+      "note": "Преподаватель на конференции, лекцию проведёт Лаврова И. С."
+    },
+    {
+      "group": "25-ИСТ",
+      "date": "2026-11-27",
+      "pair": 3,
+      "type": "move",
+      "toDate": "2026-11-28",
+      "toPair": 1,
+      "room": "лаб. 2-05",
+      "note": "Лабораторная перенесена на субботу из-за занятости лаборатории"
+    },
+    {
+      "group": "25-ИСТ",
+      "date": "2026-12-01",
+      "pair": 5,
+      "type": "extra",
+      "subject": "s2",
+      "kind": "practice",
+      "teacher": "t2",
+      "room": "1-204",
+      "note": "Консультация перед зачётной неделей: разбор задач по графам"
+    },
+    {
+      "group": "24-ХТ",
+      "date": "2026-11-23",
+      "pair": 2,
+      "type": "move",
+      "toDate": "2026-11-25",
+      "toPair": 5,
+      "room": "2-301",
+      "note": "Лекция перенесена: у преподавателя совещание в институте"
+    },
+    {
+      "group": "24-ХТ",
+      "date": "2026-11-25",
+      "pair": 3,
+      "type": "room",
+      "room": "3-210",
+      "note": "В аудитории 3-117 проходит олимпиада, лекция в 3-210"
+    },
+    {
+      "group": "24-ХТ",
+      "date": "2026-12-02",
+      "pair": 3,
+      "type": "cancel",
+      "note": "Преподаватель на больничном, лабораторная отменена"
+    }
+  ],
+  "enrollments": [
+    {
+      "student": "A",
+      "semester": 1,
+      "subject": "s10",
+      "control": "exam",
+      "teacher": "t5",
+      "final": "5",
+      "finalDate": "2026-01-14",
+      "absences": 1,
+      "classesHeld": 24,
+      "checkpoints": [
+        {
+          "title": "Контрольная работа 1",
+          "max": 20,
+          "score": 18,
+          "date": "2025-10-12"
+        },
+        {
+          "title": "Лабораторный блок",
+          "max": 20,
+          "score": 18,
+          "date": "2025-11-12"
+        },
+        {
+          "title": "Контрольная работа 2",
+          "max": 20,
+          "score": 19,
+          "date": "2025-12-12"
+        }
+      ]
+    },
+    {
+      "student": "A",
+      "semester": 1,
+      "subject": "s11",
+      "control": "exam",
+      "teacher": "t6",
+      "final": "4",
+      "finalDate": "2026-01-17",
+      "absences": 4,
+      "classesHeld": 25,
+      "checkpoints": [
+        {
+          "title": "Контрольная работа 1",
+          "max": 20,
+          "score": 15,
+          "date": "2025-10-12"
+        },
+        {
+          "title": "Лабораторный блок",
+          "max": 20,
+          "score": 16,
+          "date": "2025-11-12"
+        },
+        {
+          "title": "Контрольная работа 2",
+          "max": 20,
+          "score": 15,
+          "date": "2025-12-12"
+        }
+      ]
+    },
+    {
+      "student": "A",
+      "semester": 1,
+      "subject": "s12",
+      "control": "exam",
+      "teacher": "t2",
+      "final": "5",
+      "finalDate": "2026-01-21",
+      "absences": 1,
+      "classesHeld": 26,
+      "checkpoints": [
+        {
+          "title": "Контрольная работа 1",
+          "max": 20,
+          "score": 18,
+          "date": "2025-10-12"
+        },
+        {
+          "title": "Лабораторный блок",
+          "max": 20,
+          "score": 18,
+          "date": "2025-11-12"
+        },
+        {
+          "title": "Контрольная работа 2",
+          "max": 20,
+          "score": 19,
+          "date": "2025-12-12"
+        }
+      ]
+    },
+    {
+      "student": "A",
+      "semester": 1,
+      "subject": "s13",
+      "control": "credit",
+      "teacher": "t4",
+      "final": "зачтено",
+      "finalDate": "2026-01-10",
+      "absences": 4,
+      "classesHeld": 24,
+      "checkpoints": [
+        {
+          "title": "Контрольная работа 1",
+          "max": 20,
+          "score": 17,
+          "date": "2025-10-12"
+        },
+        {
+          "title": "Лабораторный блок",
+          "max": 20,
+          "score": 16,
+          "date": "2025-11-12"
+        },
+        {
+          "title": "Контрольная работа 2",
+          "max": 20,
+          "score": 18,
+          "date": "2025-12-12"
+        }
+      ]
+    },
+    {
+      "student": "A",
+      "semester": 1,
+      "subject": "s14",
+      "control": "diff",
+      "teacher": "t8",
+      "final": "4",
+      "finalDate": "2026-01-12",
+      "absences": 1,
+      "classesHeld": 25,
+      "checkpoints": [
+        {
+          "title": "Контрольная работа 1",
+          "max": 20,
+          "score": 15,
+          "date": "2025-10-12"
+        },
+        {
+          "title": "Лабораторный блок",
+          "max": 20,
+          "score": 16,
+          "date": "2025-11-12"
+        },
+        {
+          "title": "Контрольная работа 2",
+          "max": 20,
+          "score": 15,
+          "date": "2025-12-12"
+        }
+      ]
+    },
+    {
+      "student": "A",
+      "semester": 1,
+      "subject": "s7",
+      "control": "credit",
+      "teacher": "t7",
+      "final": "зачтено",
+      "finalDate": "2026-01-09",
+      "absences": 4,
+      "classesHeld": 26,
+      "checkpoints": [
+        {
+          "title": "Контрольная работа 1",
+          "max": 20,
+          "score": 17,
+          "date": "2025-10-12"
+        },
+        {
+          "title": "Лабораторный блок",
+          "max": 20,
+          "score": 16,
+          "date": "2025-11-12"
+        },
+        {
+          "title": "Контрольная работа 2",
+          "max": 20,
+          "score": 18,
+          "date": "2025-12-12"
+        }
+      ]
+    },
+    {
+      "student": "A",
+      "semester": 1,
+      "subject": "s8",
+      "control": "credit",
+      "teacher": "t14",
+      "final": "зачтено",
+      "finalDate": "2026-01-09",
+      "absences": 1,
+      "classesHeld": 24,
+      "checkpoints": [
+        {
+          "title": "Контрольная работа 1",
+          "max": 20,
+          "score": 17,
+          "date": "2025-10-12"
+        },
+        {
+          "title": "Лабораторный блок",
+          "max": 20,
+          "score": 16,
+          "date": "2025-11-12"
+        },
+        {
+          "title": "Контрольная работа 2",
+          "max": 20,
+          "score": 18,
+          "date": "2025-12-12"
+        }
+      ]
+    },
+    {
+      "student": "A",
+      "semester": 2,
+      "subject": "s10",
+      "control": "exam",
+      "teacher": "t5",
+      "final": "5",
+      "finalDate": "2026-06-10",
+      "absences": 5,
+      "classesHeld": 25,
+      "checkpoints": [
+        {
+          "title": "Контрольная работа 1",
+          "max": 20,
+          "score": 18,
+          "date": "2026-03-12"
+        },
+        {
+          "title": "Лабораторный блок",
+          "max": 20,
+          "score": 18,
+          "date": "2026-04-12"
+        },
+        {
+          "title": "Контрольная работа 2",
+          "max": 20,
+          "score": 19,
+          "date": "2026-05-12"
+        }
+      ]
+    },
+    {
+      "student": "A",
+      "semester": 2,
+      "subject": "s11",
+      "control": "exam",
+      "teacher": "t6",
+      "final": "5",
+      "finalDate": "2026-06-22",
+      "absences": 2,
+      "classesHeld": 26,
+      "checkpoints": [
+        {
+          "title": "Контрольная работа 1",
+          "max": 20,
+          "score": 18,
+          "date": "2026-03-12"
+        },
+        {
+          "title": "Лабораторный блок",
+          "max": 20,
+          "score": 18,
+          "date": "2026-04-12"
+        },
+        {
+          "title": "Контрольная работа 2",
+          "max": 20,
+          "score": 19,
+          "date": "2026-05-12"
+        }
+      ]
+    },
+    {
+      "student": "A",
+      "semester": 2,
+      "subject": "s12",
+      "control": "exam",
+      "teacher": "t2",
+      "final": "5",
+      "finalDate": "2026-06-16",
+      "absences": 5,
+      "classesHeld": 24,
+      "checkpoints": [
+        {
+          "title": "Контрольная работа 1",
+          "max": 20,
+          "score": 18,
+          "date": "2026-03-12"
+        },
+        {
+          "title": "Лабораторный блок",
+          "max": 20,
+          "score": 18,
+          "date": "2026-04-12"
+        },
+        {
+          "title": "Контрольная работа 2",
+          "max": 20,
+          "score": 19,
+          "date": "2026-05-12"
+        }
+      ]
+    },
+    {
+      "student": "A",
+      "semester": 2,
+      "subject": "s15",
+      "control": "exam",
+      "teacher": "t3",
+      "final": "4",
+      "finalDate": "2026-06-19",
+      "absences": 2,
+      "classesHeld": 25,
+      "checkpoints": [
+        {
+          "title": "Контрольная работа 1",
+          "max": 20,
+          "score": 15,
+          "date": "2026-03-12"
+        },
+        {
+          "title": "Лабораторный блок",
+          "max": 20,
+          "score": 16,
+          "date": "2026-04-12"
+        },
+        {
+          "title": "Контрольная работа 2",
+          "max": 20,
+          "score": 15,
+          "date": "2026-05-12"
+        }
+      ]
+    },
+    {
+      "student": "A",
+      "semester": 2,
+      "subject": "s6",
+      "control": "exam",
+      "teacher": "t6",
+      "final": "4",
+      "finalDate": "2026-06-15",
+      "absences": 5,
+      "classesHeld": 26,
+      "checkpoints": [
+        {
+          "title": "Контрольная работа 1",
+          "max": 20,
+          "score": 15,
+          "date": "2026-03-12"
+        },
+        {
+          "title": "Лабораторный блок",
+          "max": 20,
+          "score": 16,
+          "date": "2026-04-12"
+        },
+        {
+          "title": "Контрольная работа 2",
+          "max": 20,
+          "score": 15,
+          "date": "2026-05-12"
+        }
+      ]
+    },
+    {
+      "student": "A",
+      "semester": 2,
+      "subject": "s7",
+      "control": "diff",
+      "teacher": "t7",
+      "final": "5",
+      "finalDate": "2026-06-05",
+      "absences": 2,
+      "classesHeld": 24,
+      "checkpoints": [
+        {
+          "title": "Контрольная работа 1",
+          "max": 20,
+          "score": 18,
+          "date": "2026-03-12"
+        },
+        {
+          "title": "Лабораторный блок",
+          "max": 20,
+          "score": 18,
+          "date": "2026-04-12"
+        },
+        {
+          "title": "Контрольная работа 2",
+          "max": 20,
+          "score": 19,
+          "date": "2026-05-12"
+        }
+      ]
+    },
+    {
+      "student": "A",
+      "semester": 2,
+      "subject": "s8",
+      "control": "credit",
+      "teacher": "t14",
+      "final": "зачтено",
+      "finalDate": "2026-06-03",
+      "absences": 5,
+      "classesHeld": 25,
+      "checkpoints": [
+        {
+          "title": "Контрольная работа 1",
+          "max": 20,
+          "score": 17,
+          "date": "2026-03-12"
+        },
+        {
+          "title": "Лабораторный блок",
+          "max": 20,
+          "score": 16,
+          "date": "2026-04-12"
+        },
+        {
+          "title": "Контрольная работа 2",
+          "max": 20,
+          "score": 18,
+          "date": "2026-05-12"
+        }
+      ]
+    },
+    {
+      "student": "B",
+      "semester": 1,
+      "subject": "s24",
+      "control": "exam",
+      "teacher": "t11",
+      "final": "4",
+      "finalDate": "2025-01-15",
+      "absences": 1,
+      "classesHeld": 24,
+      "checkpoints": [
+        {
+          "title": "Контрольная работа 1",
+          "max": 20,
+          "score": 15,
+          "date": "2024-10-12"
+        },
+        {
+          "title": "Лабораторный блок",
+          "max": 20,
+          "score": 16,
+          "date": "2024-11-12"
+        },
+        {
+          "title": "Контрольная работа 2",
+          "max": 20,
+          "score": 15,
+          "date": "2024-12-12"
+        }
+      ]
+    },
+    {
+      "student": "B",
+      "semester": 1,
+      "subject": "s25",
+      "control": "exam",
+      "teacher": "t5",
+      "final": "3",
+      "finalDate": "2025-01-20",
+      "absences": 4,
+      "classesHeld": 25,
+      "checkpoints": [
+        {
+          "title": "Контрольная работа 1",
+          "max": 20,
+          "score": 12,
+          "date": "2024-10-12"
+        },
+        {
+          "title": "Лабораторный блок",
+          "max": 20,
+          "score": 11,
+          "date": "2024-11-12"
+        },
+        {
+          "title": "Контрольная работа 2",
+          "max": 20,
+          "score": 13,
+          "date": "2024-12-12"
+        }
+      ]
+    },
+    {
+      "student": "B",
+      "semester": 1,
+      "subject": "s21",
+      "control": "diff",
+      "teacher": "t14",
+      "final": "4",
+      "finalDate": "2025-01-11",
+      "absences": 1,
+      "classesHeld": 26,
+      "checkpoints": [
+        {
+          "title": "Контрольная работа 1",
+          "max": 20,
+          "score": 15,
+          "date": "2024-10-12"
+        },
+        {
+          "title": "Лабораторный блок",
+          "max": 20,
+          "score": 16,
+          "date": "2024-11-12"
+        },
+        {
+          "title": "Контрольная работа 2",
+          "max": 20,
+          "score": 15,
+          "date": "2024-12-12"
+        }
+      ]
+    },
+    {
+      "student": "B",
+      "semester": 1,
+      "subject": "s14",
+      "control": "diff",
+      "teacher": "t8",
+      "final": "4",
+      "finalDate": "2025-01-13",
+      "absences": 4,
+      "classesHeld": 24,
+      "checkpoints": [
+        {
+          "title": "Контрольная работа 1",
+          "max": 20,
+          "score": 15,
+          "date": "2024-10-12"
+        },
+        {
+          "title": "Лабораторный блок",
+          "max": 20,
+          "score": 16,
+          "date": "2024-11-12"
+        },
+        {
+          "title": "Контрольная работа 2",
+          "max": 20,
+          "score": 15,
+          "date": "2024-12-12"
+        }
+      ]
+    },
+    {
+      "student": "B",
+      "semester": 1,
+      "subject": "s7",
+      "control": "credit",
+      "teacher": "t7",
+      "final": "зачтено",
+      "finalDate": "2025-01-10",
+      "absences": 1,
+      "classesHeld": 25,
+      "checkpoints": [
+        {
+          "title": "Контрольная работа 1",
+          "max": 20,
+          "score": 17,
+          "date": "2024-10-12"
+        },
+        {
+          "title": "Лабораторный блок",
+          "max": 20,
+          "score": 16,
+          "date": "2024-11-12"
+        },
+        {
+          "title": "Контрольная работа 2",
+          "max": 20,
+          "score": 18,
+          "date": "2024-12-12"
+        }
+      ]
+    },
+    {
+      "student": "B",
+      "semester": 1,
+      "subject": "s8",
+      "control": "credit",
+      "teacher": "t14",
+      "final": "зачтено",
+      "finalDate": "2025-01-10",
+      "absences": 4,
+      "classesHeld": 26,
+      "checkpoints": [
+        {
+          "title": "Контрольная работа 1",
+          "max": 20,
+          "score": 17,
+          "date": "2024-10-12"
+        },
+        {
+          "title": "Лабораторный блок",
+          "max": 20,
+          "score": 16,
+          "date": "2024-11-12"
+        },
+        {
+          "title": "Контрольная работа 2",
+          "max": 20,
+          "score": 18,
+          "date": "2024-12-12"
+        }
+      ]
+    },
+    {
+      "student": "B",
+      "semester": 1,
+      "subject": "s13",
+      "control": "credit",
+      "teacher": "t4",
+      "final": "зачтено",
+      "finalDate": "2025-01-09",
+      "absences": 1,
+      "classesHeld": 24,
+      "checkpoints": [
+        {
+          "title": "Контрольная работа 1",
+          "max": 20,
+          "score": 17,
+          "date": "2024-10-12"
+        },
+        {
+          "title": "Лабораторный блок",
+          "max": 20,
+          "score": 16,
+          "date": "2024-11-12"
+        },
+        {
+          "title": "Контрольная работа 2",
+          "max": 20,
+          "score": 18,
+          "date": "2024-12-12"
+        }
+      ]
+    },
+    {
+      "student": "B",
+      "semester": 2,
+      "subject": "s24",
+      "control": "exam",
+      "teacher": "t11",
+      "final": "4",
+      "finalDate": "2025-06-17",
+      "absences": 5,
+      "classesHeld": 25,
+      "checkpoints": [
+        {
+          "title": "Контрольная работа 1",
+          "max": 20,
+          "score": 15,
+          "date": "2025-03-12"
+        },
+        {
+          "title": "Лабораторный блок",
+          "max": 20,
+          "score": 16,
+          "date": "2025-04-12"
+        },
+        {
+          "title": "Контрольная работа 2",
+          "max": 20,
+          "score": 15,
+          "date": "2025-05-12"
+        }
+      ]
+    },
+    {
+      "student": "B",
+      "semester": 2,
+      "subject": "s25",
+      "control": "exam",
+      "teacher": "t5",
+      "final": "3",
+      "finalDate": "2025-06-20",
+      "absences": 2,
+      "classesHeld": 26,
+      "checkpoints": [
+        {
+          "title": "Контрольная работа 1",
+          "max": 20,
+          "score": 12,
+          "date": "2025-03-12"
+        },
+        {
+          "title": "Лабораторный блок",
+          "max": 20,
+          "score": 11,
+          "date": "2025-04-12"
+        },
+        {
+          "title": "Контрольная работа 2",
+          "max": 20,
+          "score": 13,
+          "date": "2025-05-12"
+        }
+      ]
+    },
+    {
+      "student": "B",
+      "semester": 2,
+      "subject": "s15",
+      "control": "exam",
+      "teacher": "t3",
+      "final": "3",
+      "finalDate": "2025-06-24",
+      "absences": 5,
+      "classesHeld": 24,
+      "checkpoints": [
+        {
+          "title": "Контрольная работа 1",
+          "max": 20,
+          "score": 12,
+          "date": "2025-03-12"
+        },
+        {
+          "title": "Лабораторный блок",
+          "max": 20,
+          "score": 11,
+          "date": "2025-04-12"
+        },
+        {
+          "title": "Контрольная работа 2",
+          "max": 20,
+          "score": 13,
+          "date": "2025-05-12"
+        }
+      ]
+    },
+    {
+      "student": "B",
+      "semester": 2,
+      "subject": "s21",
+      "control": "diff",
+      "teacher": "t14",
+      "final": "5",
+      "finalDate": "2025-06-10",
+      "absences": 2,
+      "classesHeld": 25,
+      "checkpoints": [
+        {
+          "title": "Контрольная работа 1",
+          "max": 20,
+          "score": 18,
+          "date": "2025-03-12"
+        },
+        {
+          "title": "Лабораторный блок",
+          "max": 20,
+          "score": 18,
+          "date": "2025-04-12"
+        },
+        {
+          "title": "Контрольная работа 2",
+          "max": 20,
+          "score": 19,
+          "date": "2025-05-12"
+        }
+      ]
+    },
+    {
+      "student": "B",
+      "semester": 2,
+      "subject": "s7",
+      "control": "diff",
+      "teacher": "t7",
+      "final": "4",
+      "finalDate": "2025-06-06",
+      "absences": 5,
+      "classesHeld": 26,
+      "checkpoints": [
+        {
+          "title": "Контрольная работа 1",
+          "max": 20,
+          "score": 15,
+          "date": "2025-03-12"
+        },
+        {
+          "title": "Лабораторный блок",
+          "max": 20,
+          "score": 16,
+          "date": "2025-04-12"
+        },
+        {
+          "title": "Контрольная работа 2",
+          "max": 20,
+          "score": 15,
+          "date": "2025-05-12"
+        }
+      ]
+    },
+    {
+      "student": "B",
+      "semester": 2,
+      "subject": "s8",
+      "control": "credit",
+      "teacher": "t14",
+      "final": "зачтено",
+      "finalDate": "2025-06-05",
+      "absences": 2,
+      "classesHeld": 24,
+      "checkpoints": [
+        {
+          "title": "Контрольная работа 1",
+          "max": 20,
+          "score": 17,
+          "date": "2025-03-12"
+        },
+        {
+          "title": "Лабораторный блок",
+          "max": 20,
+          "score": 16,
+          "date": "2025-04-12"
+        },
+        {
+          "title": "Контрольная работа 2",
+          "max": 20,
+          "score": 18,
+          "date": "2025-05-12"
+        }
+      ]
+    },
+    {
+      "student": "B",
+      "semester": 3,
+      "subject": "s18",
+      "control": "exam",
+      "teacher": "t11",
+      "final": "3",
+      "finalDate": "2026-01-16",
+      "absences": 0,
+      "classesHeld": 25,
+      "checkpoints": [
+        {
+          "title": "Контрольная работа 1",
+          "max": 20,
+          "score": 12,
+          "date": "2025-10-12"
+        },
+        {
+          "title": "Лабораторный блок",
+          "max": 20,
+          "score": 11,
+          "date": "2025-11-12"
+        },
+        {
+          "title": "Контрольная работа 2",
+          "max": 20,
+          "score": 13,
+          "date": "2025-12-12"
+        }
+      ]
+    },
+    {
+      "student": "B",
+      "semester": 3,
+      "subject": "s25",
+      "control": "exam",
+      "teacher": "t5",
+      "final": "3",
+      "finalDate": "2026-01-21",
+      "absences": 3,
+      "classesHeld": 26,
+      "checkpoints": [
+        {
+          "title": "Контрольная работа 1",
+          "max": 20,
+          "score": 12,
+          "date": "2025-10-12"
+        },
+        {
+          "title": "Лабораторный блок",
+          "max": 20,
+          "score": 11,
+          "date": "2025-11-12"
+        },
+        {
+          "title": "Контрольная работа 2",
+          "max": 20,
+          "score": 13,
+          "date": "2025-12-12"
+        }
+      ]
+    },
+    {
+      "student": "B",
+      "semester": 3,
+      "subject": "s9",
+      "control": "diff",
+      "teacher": "t8",
+      "final": "4",
+      "finalDate": "2026-01-12",
+      "absences": 0,
+      "classesHeld": 24,
+      "checkpoints": [
+        {
+          "title": "Контрольная работа 1",
+          "max": 20,
+          "score": 15,
+          "date": "2025-10-12"
+        },
+        {
+          "title": "Лабораторный блок",
+          "max": 20,
+          "score": 16,
+          "date": "2025-11-12"
+        },
+        {
+          "title": "Контрольная работа 2",
+          "max": 20,
+          "score": 15,
+          "date": "2025-12-12"
+        }
+      ]
+    },
+    {
+      "student": "B",
+      "semester": 3,
+      "subject": "s20",
+      "control": "credit",
+      "teacher": "t11",
+      "final": "зачтено",
+      "finalDate": "2026-01-13",
+      "absences": 3,
+      "classesHeld": 25,
+      "checkpoints": [
+        {
+          "title": "Контрольная работа 1",
+          "max": 20,
+          "score": 17,
+          "date": "2025-10-12"
+        },
+        {
+          "title": "Лабораторный блок",
+          "max": 20,
+          "score": 16,
+          "date": "2025-11-12"
+        },
+        {
+          "title": "Контрольная работа 2",
+          "max": 20,
+          "score": 18,
+          "date": "2025-12-12"
+        }
+      ]
+    },
+    {
+      "student": "B",
+      "semester": 3,
+      "subject": "s7",
+      "control": "credit",
+      "teacher": "t7",
+      "final": "зачтено",
+      "finalDate": "2026-01-10",
+      "absences": 0,
+      "classesHeld": 26,
+      "checkpoints": [
+        {
+          "title": "Контрольная работа 1",
+          "max": 20,
+          "score": 17,
+          "date": "2025-10-12"
+        },
+        {
+          "title": "Лабораторный блок",
+          "max": 20,
+          "score": 16,
+          "date": "2025-11-12"
+        },
+        {
+          "title": "Контрольная работа 2",
+          "max": 20,
+          "score": 18,
+          "date": "2025-12-12"
+        }
+      ]
+    },
+    {
+      "student": "B",
+      "semester": 3,
+      "subject": "s8",
+      "control": "credit",
+      "teacher": "t14",
+      "final": "зачтено",
+      "finalDate": "2026-01-10",
+      "absences": 3,
+      "classesHeld": 24,
+      "checkpoints": [
+        {
+          "title": "Контрольная работа 1",
+          "max": 20,
+          "score": 17,
+          "date": "2025-10-12"
+        },
+        {
+          "title": "Лабораторный блок",
+          "max": 20,
+          "score": 16,
+          "date": "2025-11-12"
+        },
+        {
+          "title": "Контрольная работа 2",
+          "max": 20,
+          "score": 18,
+          "date": "2025-12-12"
+        }
+      ]
+    },
+    {
+      "student": "B",
+      "semester": 3,
+      "subject": "s15",
+      "control": "exam",
+      "teacher": "t3",
+      "final": "4",
+      "finalDate": "2026-01-23",
+      "absences": 0,
+      "classesHeld": 25,
+      "checkpoints": [
+        {
+          "title": "Контрольная работа 1",
+          "max": 20,
+          "score": 15,
+          "date": "2025-10-12"
+        },
+        {
+          "title": "Лабораторный блок",
+          "max": 20,
+          "score": 16,
+          "date": "2025-11-12"
+        },
+        {
+          "title": "Контрольная работа 2",
+          "max": 20,
+          "score": 15,
+          "date": "2025-12-12"
+        }
+      ]
+    },
+    {
+      "student": "B",
+      "semester": 4,
+      "subject": "s20",
+      "control": "exam",
+      "teacher": "t11",
+      "final": "2",
+      "finalDate": "2026-06-18",
+      "absences": 4,
+      "classesHeld": 26,
+      "checkpoints": [
+        {
+          "title": "Контрольная работа 1",
+          "max": 20,
+          "score": 7,
+          "date": "2026-03-12"
+        },
+        {
+          "title": "Лабораторный блок",
+          "max": 20,
+          "score": 9,
+          "date": "2026-04-12"
+        },
+        {
+          "title": "Контрольная работа 2",
+          "max": 20,
+          "score": 6,
+          "date": "2026-05-12"
+        }
+      ]
+    },
+    {
+      "student": "B",
+      "semester": 4,
+      "subject": "s18",
+      "control": "exam",
+      "teacher": "t11",
+      "final": "3",
+      "finalDate": "2026-06-15",
+      "absences": 1,
+      "classesHeld": 24,
+      "checkpoints": [
+        {
+          "title": "Контрольная работа 1",
+          "max": 20,
+          "score": 12,
+          "date": "2026-03-12"
+        },
+        {
+          "title": "Лабораторный блок",
+          "max": 20,
+          "score": 11,
+          "date": "2026-04-12"
+        },
+        {
+          "title": "Контрольная работа 2",
+          "max": 20,
+          "score": 13,
+          "date": "2026-05-12"
+        }
+      ]
+    },
+    {
+      "student": "B",
+      "semester": 4,
+      "subject": "s17",
+      "control": "exam",
+      "teacher": "t10",
+      "final": "4",
+      "finalDate": "2026-06-22",
+      "absences": 4,
+      "classesHeld": 25,
+      "checkpoints": [
+        {
+          "title": "Контрольная работа 1",
+          "max": 20,
+          "score": 15,
+          "date": "2026-03-12"
+        },
+        {
+          "title": "Лабораторный блок",
+          "max": 20,
+          "score": 16,
+          "date": "2026-04-12"
+        },
+        {
+          "title": "Контрольная работа 2",
+          "max": 20,
+          "score": 15,
+          "date": "2026-05-12"
+        }
+      ]
+    },
+    {
+      "student": "B",
+      "semester": 4,
+      "subject": "s7",
+      "control": "diff",
+      "teacher": "t7",
+      "final": "4",
+      "finalDate": "2026-06-05",
+      "absences": 1,
+      "classesHeld": 26,
+      "checkpoints": [
+        {
+          "title": "Контрольная работа 1",
+          "max": 20,
+          "score": 15,
+          "date": "2026-03-12"
+        },
+        {
+          "title": "Лабораторный блок",
+          "max": 20,
+          "score": 16,
+          "date": "2026-04-12"
+        },
+        {
+          "title": "Контрольная работа 2",
+          "max": 20,
+          "score": 15,
+          "date": "2026-05-12"
+        }
+      ]
+    },
+    {
+      "student": "B",
+      "semester": 4,
+      "subject": "s8",
+      "control": "credit",
+      "teacher": "t14",
+      "final": "зачтено",
+      "finalDate": "2026-06-04",
+      "absences": 4,
+      "classesHeld": 24,
+      "checkpoints": [
+        {
+          "title": "Контрольная работа 1",
+          "max": 20,
+          "score": 17,
+          "date": "2026-03-12"
+        },
+        {
+          "title": "Лабораторный блок",
+          "max": 20,
+          "score": 16,
+          "date": "2026-04-12"
+        },
+        {
+          "title": "Контрольная работа 2",
+          "max": 20,
+          "score": 18,
+          "date": "2026-05-12"
+        }
+      ]
+    },
+    {
+      "student": "B",
+      "semester": 4,
+      "subject": "s24",
+      "control": "credit",
+      "teacher": "t11",
+      "final": "зачтено",
+      "finalDate": "2026-06-08",
+      "absences": 1,
+      "classesHeld": 25,
+      "checkpoints": [
+        {
+          "title": "Контрольная работа 1",
+          "max": 20,
+          "score": 17,
+          "date": "2026-03-12"
+        },
+        {
+          "title": "Лабораторный блок",
+          "max": 20,
+          "score": 16,
+          "date": "2026-04-12"
+        },
+        {
+          "title": "Контрольная работа 2",
+          "max": 20,
+          "score": 18,
+          "date": "2026-05-12"
+        }
+      ]
+    },
+    {
+      "student": "A",
+      "semester": 3,
+      "subject": "s1",
+      "control": "exam",
+      "teacher": "t1",
+      "final": null,
+      "finalDate": null,
+      "absences": 1,
+      "classesHeld": 24,
+      "checkpoints": [
+        {
+          "title": "Контрольная работа 1",
+          "max": 20,
+          "score": 18,
+          "date": "2026-10-08"
+        },
+        {
+          "title": "Лабораторные работы",
+          "max": 20,
+          "score": 17,
+          "date": "2026-11-12"
+        },
+        {
+          "title": "Контрольная работа 2",
+          "max": 20,
+          "score": null,
+          "date": "2026-12-10"
+        }
+      ]
+    },
+    {
+      "student": "A",
+      "semester": 3,
+      "subject": "s2",
+      "control": "exam",
+      "teacher": "t2",
+      "final": null,
+      "finalDate": null,
+      "absences": 0,
+      "classesHeld": 24,
+      "checkpoints": [
+        {
+          "title": "Практикум 1",
+          "max": 15,
+          "score": 14,
+          "date": "2026-10-01"
+        },
+        {
+          "title": "Контрольная работа",
+          "max": 25,
+          "score": 22,
+          "date": "2026-11-05"
+        },
+        {
+          "title": "Тест по графам",
+          "max": 20,
+          "score": null,
+          "date": "2026-12-03"
+        }
+      ]
+    },
+    {
+      "student": "A",
+      "semester": 3,
+      "subject": "s3",
+      "control": "exam",
+      "teacher": "t3",
+      "final": null,
+      "finalDate": null,
+      "absences": 2,
+      "classesHeld": 24,
+      "checkpoints": [
+        {
+          "title": "Лабораторная 1",
+          "max": 20,
+          "score": 18,
+          "date": "2026-10-15"
+        },
+        {
+          "title": "Лабораторная 2",
+          "max": 20,
+          "score": 17,
+          "date": "2026-11-19"
+        },
+        {
+          "title": "Итоговая лабораторная",
+          "max": 20,
+          "score": null,
+          "date": "2026-12-08"
+        }
+      ]
+    },
+    {
+      "student": "A",
+      "semester": 3,
+      "subject": "s4",
+      "control": "course",
+      "teacher": "t4",
+      "final": null,
+      "finalDate": null,
+      "absences": 1,
+      "classesHeld": 24,
+      "checkpoints": [
+        {
+          "title": "Этап 1: макет",
+          "max": 15,
+          "score": 14,
+          "date": "2026-10-22"
+        },
+        {
+          "title": "Этап 2: вёрстка и скрипты",
+          "max": 20,
+          "score": 17,
+          "date": "2026-11-16"
+        },
+        {
+          "title": "Защита проекта",
+          "max": 25,
+          "score": null,
+          "date": "2026-12-11"
+        }
+      ]
+    },
+    {
+      "student": "A",
+      "semester": 3,
+      "subject": "s5",
+      "control": "exam",
+      "teacher": "t5",
+      "final": null,
+      "finalDate": null,
+      "absences": 3,
+      "classesHeld": 24,
+      "checkpoints": [
+        {
+          "title": "Контрольная работа 1",
+          "max": 20,
+          "score": 17,
+          "date": "2026-10-12"
+        },
+        {
+          "title": "Контрольная работа 2",
+          "max": 20,
+          "score": 18,
+          "date": "2026-11-16"
+        },
+        {
+          "title": "Типовой расчёт",
+          "max": 20,
+          "score": null,
+          "date": "2026-12-07"
+        }
+      ]
+    },
+    {
+      "student": "A",
+      "semester": 3,
+      "subject": "s6",
+      "control": "credit",
+      "teacher": "t6",
+      "final": null,
+      "finalDate": null,
+      "absences": 0,
+      "classesHeld": 24,
+      "checkpoints": [
+        {
+          "title": "Коллоквиум",
+          "max": 30,
+          "score": 26,
+          "date": "2026-11-10"
+        },
+        {
+          "title": "Итоговая контрольная",
+          "max": 30,
+          "score": null,
+          "date": "2026-12-09"
+        }
+      ]
+    },
+    {
+      "student": "A",
+      "semester": 3,
+      "subject": "s7",
+      "control": "credit",
+      "teacher": "t7",
+      "final": null,
+      "finalDate": null,
+      "absences": 2,
+      "classesHeld": 24,
+      "checkpoints": [
+        {
+          "title": "Лексический тест",
+          "max": 20,
+          "score": 17,
+          "date": "2026-10-20"
+        },
+        {
+          "title": "Устный опрос",
+          "max": 20,
+          "score": 18,
+          "date": "2026-11-17"
+        },
+        {
+          "title": "Проект-презентация",
+          "max": 20,
+          "score": null,
+          "date": "2026-12-05"
+        }
+      ]
+    },
+    {
+      "student": "A",
+      "semester": 3,
+      "subject": "s9",
+      "control": "diff",
+      "teacher": "t8",
+      "final": null,
+      "finalDate": null,
+      "absences": 1,
+      "classesHeld": 24,
+      "checkpoints": [
+        {
+          "title": "Реферат",
+          "max": 20,
+          "score": 18,
+          "date": "2026-10-27"
+        },
+        {
+          "title": "Семинар",
+          "max": 20,
+          "score": 17,
+          "date": "2026-11-17"
+        },
+        {
+          "title": "Эссе",
+          "max": 20,
+          "score": null,
+          "date": "2026-12-04"
+        }
+      ]
+    },
+    {
+      "student": "B",
+      "semester": 5,
+      "subject": "s16",
+      "control": "course",
+      "teacher": "t9",
+      "final": null,
+      "finalDate": null,
+      "absences": 3,
+      "classesHeld": 26,
+      "checkpoints": [
+        {
+          "title": "Этап 1: расчёт материального баланса",
+          "max": 10,
+          "score": 7,
+          "date": "2026-10-05"
+        },
+        {
+          "title": "Этап 2: тепловой расчёт",
+          "max": 20,
+          "score": 12,
+          "date": "2026-11-09"
+        },
+        {
+          "title": "Защита курсовой работы",
+          "max": 30,
+          "score": null,
+          "date": "2026-12-11"
+        }
+      ]
+    },
+    {
+      "student": "B",
+      "semester": 5,
+      "subject": "s17",
+      "control": "exam",
+      "teacher": "t10",
+      "final": null,
+      "finalDate": null,
+      "absences": 11,
+      "classesHeld": 26,
+      "checkpoints": [
+        {
+          "title": "Контрольная работа 1",
+          "max": 20,
+          "score": 7,
+          "date": "2026-10-14"
+        },
+        {
+          "title": "Лабораторный цикл",
+          "max": 20,
+          "score": 8,
+          "date": "2026-11-11"
+        },
+        {
+          "title": "Коллоквиум",
+          "max": 20,
+          "score": null,
+          "date": "2026-12-08"
+        }
+      ]
+    },
+    {
+      "student": "B",
+      "semester": 5,
+      "subject": "s18",
+      "control": "exam",
+      "teacher": "t11",
+      "final": null,
+      "finalDate": null,
+      "absences": 4,
+      "classesHeld": 26,
+      "checkpoints": [
+        {
+          "title": "Тест по номенклатуре",
+          "max": 20,
+          "score": 13,
+          "date": "2026-10-09"
+        },
+        {
+          "title": "Лабораторный цикл",
+          "max": 20,
+          "score": 12,
+          "date": "2026-11-13"
+        },
+        {
+          "title": "Контрольная работа",
+          "max": 20,
+          "score": null,
+          "date": "2026-12-10"
+        }
+      ]
+    },
+    {
+      "student": "B",
+      "semester": 5,
+      "subject": "s19",
+      "control": "exam",
+      "teacher": "t13",
+      "final": null,
+      "finalDate": null,
+      "absences": 9,
+      "classesHeld": 26,
+      "checkpoints": [
+        {
+          "title": "Контрольная работа 1",
+          "max": 20,
+          "score": 6,
+          "date": "2026-10-21"
+        },
+        {
+          "title": "Лабораторный отчёт",
+          "max": 20,
+          "score": 8,
+          "date": "2026-11-18"
+        },
+        {
+          "title": "Итоговая контрольная",
+          "max": 20,
+          "score": null,
+          "date": "2026-12-09"
+        }
+      ]
+    },
+    {
+      "student": "B",
+      "semester": 5,
+      "subject": "s22",
+      "control": "credit",
+      "teacher": "t13",
+      "final": null,
+      "finalDate": null,
+      "absences": 5,
+      "classesHeld": 26,
+      "checkpoints": [
+        {
+          "title": "Тест",
+          "max": 20,
+          "score": 13,
+          "date": "2026-10-28"
+        },
+        {
+          "title": "Практическая работа",
+          "max": 20,
+          "score": 12,
+          "date": "2026-11-18"
+        },
+        {
+          "title": "Итоговый тест",
+          "max": 20,
+          "score": null,
+          "date": "2026-12-04"
+        }
+      ]
+    },
+    {
+      "student": "B",
+      "semester": 5,
+      "subject": "s23",
+      "control": "diff",
+      "teacher": "t12",
+      "final": null,
+      "finalDate": null,
+      "absences": 6,
+      "classesHeld": 26,
+      "checkpoints": [
+        {
+          "title": "Доклад",
+          "max": 20,
+          "score": 13,
+          "date": "2026-11-04"
+        },
+        {
+          "title": "Контрольная работа",
+          "max": 20,
+          "score": 11,
+          "date": "2026-11-19"
+        },
+        {
+          "title": "Итоговый тест",
+          "max": 20,
+          "score": null,
+          "date": "2026-12-10"
+        }
+      ]
+    },
+    {
+      "student": "B",
+      "semester": 5,
+      "subject": "s26",
+      "control": "credit",
+      "teacher": "t14",
+      "final": null,
+      "finalDate": null,
+      "absences": 4,
+      "classesHeld": 26,
+      "checkpoints": [
+        {
+          "title": "Лабораторная 1",
+          "max": 20,
+          "score": 14,
+          "date": "2026-10-20"
+        },
+        {
+          "title": "Лабораторная 2",
+          "max": 20,
+          "score": 13,
+          "date": "2026-11-17"
+        },
+        {
+          "title": "Защита лабораторных",
+          "max": 20,
+          "score": null,
+          "date": "2026-12-03"
+        }
+      ]
+    },
+    {
+      "student": "B",
+      "semester": 5,
+      "subject": "s8",
+      "control": "credit",
+      "teacher": "t14",
+      "final": null,
+      "finalDate": null,
+      "absences": 6,
+      "classesHeld": 26,
+      "checkpoints": [
+        {
+          "title": "Нормативы 1",
+          "max": 20,
+          "score": 14,
+          "date": "2026-10-30"
+        },
+        {
+          "title": "Нормативы 2",
+          "max": 20,
+          "score": 15,
+          "date": "2026-11-20"
+        },
+        {
+          "title": "Итоговые нормативы",
+          "max": 20,
+          "score": null,
+          "date": "2026-12-11"
+        }
+      ]
+    }
+  ],
+  "sessionEvents": [
+    {
+      "group": "25-ИСТ",
+      "subject": "s6",
+      "kind": "credit",
+      "date": "2026-12-22",
+      "time": "10:00",
+      "room": "1-308",
+      "teacher": "t6"
+    },
+    {
+      "group": "25-ИСТ",
+      "subject": "s7",
+      "kind": "credit",
+      "date": "2026-12-23",
+      "time": "09:00",
+      "room": "2-112",
+      "teacher": "t7"
+    },
+    {
+      "group": "25-ИСТ",
+      "subject": "s9",
+      "kind": "credit",
+      "date": "2026-12-24",
+      "time": "11:00",
+      "room": "1-204",
+      "teacher": "t8"
+    },
+    {
+      "group": "25-ИСТ",
+      "subject": "s4",
+      "kind": "credit",
+      "date": "2026-12-25",
+      "time": "10:00",
+      "room": "лаб. 2-07",
+      "teacher": "t4"
+    },
+    {
+      "group": "25-ИСТ",
+      "subject": "s5",
+      "kind": "consult",
+      "date": "2027-01-12",
+      "time": "14:00",
+      "room": "1-310",
+      "teacher": "t5"
+    },
+    {
+      "group": "25-ИСТ",
+      "subject": "s5",
+      "kind": "exam",
+      "date": "2027-01-13",
+      "time": "09:00",
+      "room": "1-310",
+      "teacher": "t5"
+    },
+    {
+      "group": "25-ИСТ",
+      "subject": "s2",
+      "kind": "consult",
+      "date": "2027-01-14",
+      "time": "14:00",
+      "room": "1-204",
+      "teacher": "t2"
+    },
+    {
+      "group": "25-ИСТ",
+      "subject": "s2",
+      "kind": "exam",
+      "date": "2027-01-15",
+      "time": "09:00",
+      "room": "1-204",
+      "teacher": "t2"
+    },
+    {
+      "group": "25-ИСТ",
+      "subject": "s1",
+      "kind": "consult",
+      "date": "2027-01-18",
+      "time": "14:00",
+      "room": "3-117",
+      "teacher": "t1"
+    },
+    {
+      "group": "25-ИСТ",
+      "subject": "s1",
+      "kind": "exam",
+      "date": "2027-01-19",
+      "time": "09:00",
+      "room": "3-117",
+      "teacher": "t1"
+    },
+    {
+      "group": "25-ИСТ",
+      "subject": "s3",
+      "kind": "consult",
+      "date": "2027-01-20",
+      "time": "14:00",
+      "room": "3-117",
+      "teacher": "t3"
+    },
+    {
+      "group": "25-ИСТ",
+      "subject": "s3",
+      "kind": "exam",
+      "date": "2027-01-21",
+      "time": "09:00",
+      "room": "3-117",
+      "teacher": "t3"
+    },
+    {
+      "group": "24-ХТ",
+      "subject": "s22",
+      "kind": "credit",
+      "date": "2026-12-21",
+      "time": "10:00",
+      "room": "3-117",
+      "teacher": "t13"
+    },
+    {
+      "group": "24-ХТ",
+      "subject": "s26",
+      "kind": "credit",
+      "date": "2026-12-22",
+      "time": "12:00",
+      "room": "лаб. 2-20",
+      "teacher": "t14"
+    },
+    {
+      "group": "24-ХТ",
+      "subject": "s8",
+      "kind": "credit",
+      "date": "2026-12-23",
+      "time": "11:00",
+      "room": "спортзал",
+      "teacher": "t14"
+    },
+    {
+      "group": "24-ХТ",
+      "subject": "s16",
+      "kind": "credit",
+      "date": "2026-12-24",
+      "time": "10:00",
+      "room": "2-301",
+      "teacher": "t9"
+    },
+    {
+      "group": "24-ХТ",
+      "subject": "s23",
+      "kind": "credit",
+      "date": "2026-12-25",
+      "time": "10:00",
+      "room": "1-415",
+      "teacher": "t12"
+    },
+    {
+      "group": "24-ХТ",
+      "subject": "s17",
+      "kind": "consult",
+      "date": "2027-01-12",
+      "time": "14:00",
+      "room": "2-210",
+      "teacher": "t10"
+    },
+    {
+      "group": "24-ХТ",
+      "subject": "s17",
+      "kind": "exam",
+      "date": "2027-01-13",
+      "time": "09:00",
+      "room": "2-210",
+      "teacher": "t10"
+    },
+    {
+      "group": "24-ХТ",
+      "subject": "s18",
+      "kind": "consult",
+      "date": "2027-01-18",
+      "time": "14:00",
+      "room": "2-210",
+      "teacher": "t11"
+    },
+    {
+      "group": "24-ХТ",
+      "subject": "s18",
+      "kind": "exam",
+      "date": "2027-01-19",
+      "time": "09:00",
+      "room": "2-210",
+      "teacher": "t11"
+    },
+    {
+      "group": "24-ХТ",
+      "subject": "s19",
+      "kind": "consult",
+      "date": "2027-01-21",
+      "time": "14:00",
+      "room": "2-301",
+      "teacher": "t13"
+    },
+    {
+      "group": "24-ХТ",
+      "subject": "s19",
+      "kind": "exam",
+      "date": "2027-01-22",
+      "time": "09:00",
+      "room": "2-301",
+      "teacher": "t13"
+    }
+  ],
+  "announcements": [
+    {
+      "title": "График зачётной недели",
+      "body": "Зачётная неделя пройдёт с 21 по 26 декабря. Точное время и аудитории по каждой дисциплине уже в разделе «Учёба». Если зачёт совпал с другим экзаменом или болезнью, напишите в деканат заранее, а не в день зачёта.",
+      "audience": "all",
+      "date": "2026-11-20T10:30",
+      "important": true,
+      "author": "D"
+    },
+    {
+      "title": "Стипендиальная комиссия",
+      "body": "Комиссия соберётся 3 декабря в 15:00 в аудитории 1-100. Список на повышенную стипендию будет вывешен на следующий день. Вопросы по баллам присылайте в деканат до 2 декабря.",
+      "audience": "all",
+      "date": "2026-11-18T12:00",
+      "important": false,
+      "author": "D"
+    },
+    {
+      "title": "Изменение режима работы деканата",
+      "body": "С 24 ноября деканат принимает посетителей с 10:00 до 16:00, перерыв с 13:00 до 14:00. По пятницам приём заканчивается в 15:00. Справки удобнее заказывать через «Деку», так вы не потеряете очередь.",
+      "audience": "all",
+      "date": "2026-11-21T15:00",
+      "important": true,
+      "author": "D"
+    },
+    {
+      "title": "День открытых дверей: нужны волонтёры",
+      "body": "Институт принимает школьников 5 декабря. Нужны 15 студентов, чтобы встречать гостей и водить по корпусам. За участие дадим часы волонтёрской практики, запись у куратора или в деканате.",
+      "audience": "all",
+      "date": "2026-11-14T09:30",
+      "important": false,
+      "author": "D"
+    },
+    {
+      "title": "Запись на элективы",
+      "body": "Выбор элективных дисциплин на весенний семестр открыт до 29 ноября. Мест в группах ограниченное число, поэтому лучше не откладывать. Выбор можно сменить один раз до 5 декабря.",
+      "audience": "group:25-ИСТ",
+      "date": "2026-11-19T13:15",
+      "important": false,
+      "author": "D"
+    },
+    {
+      "title": "Флюорография",
+      "body": "Флюорографию проходим 26 и 27 ноября в поликлинике на Октябрьской. Возьмите паспорт и полис, студенческий билет тоже пригодится. Справку принесите в деканат до 4 декабря.",
+      "audience": "group:24-ХТ",
+      "date": "2026-11-17T11:40",
+      "important": false,
+      "author": "D"
+    },
+    {
+      "title": "Медосмотр перед практикой",
+      "body": "Перед практикой в декабре нужен медосмотр, список специалистов лежит в деканате. Приходить лучше утром, к 8:30, очередей меньше. Заключение сдайте куратору группы.",
+      "audience": "group:24-ХТ",
+      "date": "2026-11-22T09:00",
+      "important": false,
+      "author": "D"
+    },
+    {
+      "title": "Олимпиада по программированию",
+      "body": "Факультетская олимпиада состоится 4 декабря в компьютерных классах. Команды по три человека, регистрация открыта до 1 декабря. Победителей ждут призы и баллы в портфолио.",
+      "audience": "faculty:ФИТЭ",
+      "date": "2026-11-15T16:20",
+      "important": false,
+      "author": "D"
+    },
+    {
+      "title": "Сбор заявок на материальную помощь",
+      "body": "Заявки на материальную помощь за ноябрь принимаем до 30 ноября через раздел «Заявки». К заявлению приложите подтверждающие документы, без них комиссия вернёт заявку. Ответ придёт в течение недели.",
+      "audience": "faculty:ИТФ",
+      "date": "2026-11-16T10:00",
+      "important": false,
+      "author": "D"
+    }
+  ],
+  "deadlines": [
+    {
+      "audience": "all",
+      "title": "Оплата проживания в общежитии за декабрь",
+      "due": "2026-11-30T23:59",
+      "kind": "finance",
+      "link": "/requests"
+    },
+    {
+      "audience": "all",
+      "title": "Сдать флюорографию и медсправку в деканат",
+      "due": "2026-12-04T17:00",
+      "kind": "docs",
+      "link": "/requests"
+    },
+    {
+      "audience": "all",
+      "title": "Записаться волонтёром на день открытых дверей",
+      "due": "2026-11-27T18:00",
+      "kind": "event",
+      "link": "/inbox"
+    },
+    {
+      "audience": "group:25-ИСТ",
+      "title": "Выбрать элективы на весенний семестр",
+      "due": "2026-11-29T23:59",
+      "kind": "study",
+      "link": "/study"
+    },
+    {
+      "audience": "group:25-ИСТ",
+      "title": "Сдать итоговую лабораторную по операционным системам",
+      "due": "2026-12-08T23:59",
+      "kind": "study",
+      "link": "/study"
+    },
+    {
+      "audience": "group:24-ХТ",
+      "title": "Сдать черновик курсовой по ПАХТ",
+      "due": "2026-12-02T23:59",
+      "kind": "study",
+      "link": "/study"
+    },
+    {
+      "audience": "student:A",
+      "title": "Забрать справку об обучении в деканате",
+      "due": "2026-11-26T17:00",
+      "kind": "docs",
+      "link": "/requests"
+    },
+    {
+      "audience": "student:B",
+      "title": "Донести документы для повторной заявки на материальную помощь",
+      "due": "2026-11-30T17:00",
+      "kind": "docs",
+      "link": "/requests"
+    }
+  ],
+  "applications": [
+    {
+      "student": "A",
+      "type": "cert_study",
+      "createdAt": "2026-11-18T12:10",
+      "status": "ready",
+      "payload": {
+        "purpose": "по месту требования",
+        "copies": 1,
+        "delivery": "electronic"
+      },
+      "events": [
+        {
+          "at": "2026-11-18T12:10",
+          "status": "submitted",
+          "by": "A",
+          "comment": ""
+        },
+        {
+          "at": "2026-11-18T14:30",
+          "status": "in_progress",
+          "by": "D",
+          "comment": "Принято в работу"
+        },
+        {
+          "at": "2026-11-19T09:20",
+          "status": "ready",
+          "by": "D",
+          "comment": "Справка готова, электронная версия в карточке заявки"
+        }
+      ],
+      "messages": []
+    },
+    {
+      "student": "A",
+      "type": "cert_income",
+      "createdAt": "2026-11-20T09:15",
+      "status": "in_progress",
+      "payload": {
+        "period": "last6",
+        "purpose": "для оформления субсидии",
+        "delivery": "paper"
+      },
+      "events": [
+        {
+          "at": "2026-11-20T09:15",
+          "status": "submitted",
+          "by": "A",
+          "comment": ""
+        },
+        {
+          "at": "2026-11-20T11:00",
+          "status": "in_progress",
+          "by": "D",
+          "comment": "Принято в работу, запрашиваем данные в бухгалтерии"
+        }
+      ],
+      "messages": [
+        {
+          "at": "2026-11-20T09:40",
+          "by": "A",
+          "text": "Добрый день! Справка нужна в бумажном виде с печатью, это возможно?"
+        },
+        {
+          "at": "2026-11-20T11:05",
+          "by": "D",
+          "text": "Да, бумажную справку с печатью подготовим. Данные запрошены в бухгалтерии, обычно это два-три рабочих дня."
+        },
+        {
+          "at": "2026-11-20T11:20",
+          "by": "A",
+          "text": "Спасибо, жду уведомления."
+        }
+      ]
+    },
+    {
+      "student": "B",
+      "type": "aid",
+      "createdAt": "2026-11-10T10:00",
+      "status": "rejected",
+      "payload": {
+        "ground": "Трудная жизненная ситуация",
+        "comment": "Семья в этом месяце потеряла часть дохода, прошу рассмотреть заявку."
+      },
+      "events": [
+        {
+          "at": "2026-11-10T10:00",
+          "status": "submitted",
+          "by": "B",
+          "comment": ""
+        },
+        {
+          "at": "2026-11-11T09:30",
+          "status": "in_progress",
+          "by": "D",
+          "comment": "Заявка передана на комиссию"
+        },
+        {
+          "at": "2026-11-14T15:45",
+          "status": "rejected",
+          "by": "D",
+          "comment": "Отказано: к заявке нет документов, подтверждающих трудную жизненную ситуацию. Принесите справку о составе семьи и справки о доходах за три месяца и подайте заявку повторно до 30 ноября."
+        }
+      ],
+      "messages": [
+        {
+          "at": "2026-11-14T15:50",
+          "by": "D",
+          "text": "Егор, комиссия не смогла принять решение без документов. Перечень в решении, повторную заявку рассмотрим вне очереди."
+        },
+        {
+          "at": "2026-11-15T10:20",
+          "by": "B",
+          "text": "Понял, справки соберу и принесу в понедельник."
+        },
+        {
+          "at": "2026-11-16T09:10",
+          "by": "D",
+          "text": "Хорошо, ждём. Приём до 16:00."
+        }
+      ]
+    },
+    {
+      "student": "B",
+      "type": "retake",
+      "createdAt": "2026-11-19T16:40",
+      "status": "submitted",
+      "payload": {
+        "subject": "s20",
+        "wish": "Пересдать комиссии в декабре, до начала зимней сессии"
+      },
+      "events": [
+        {
+          "at": "2026-11-19T16:40",
+          "status": "submitted",
+          "by": "B",
+          "comment": ""
+        }
+      ],
+      "messages": []
+    },
+    {
+      "student": "B",
+      "type": "duplicate",
+      "createdAt": "2026-11-12T11:00",
+      "status": "issued",
+      "payload": {
+        "doc": "student_card",
+        "reason": "lost"
+      },
+      "events": [
+        {
+          "at": "2026-11-12T11:00",
+          "status": "submitted",
+          "by": "B",
+          "comment": ""
+        },
+        {
+          "at": "2026-11-12T13:00",
+          "status": "in_progress",
+          "by": "D",
+          "comment": "Принято, оформляем дубликат"
+        },
+        {
+          "at": "2026-11-17T10:00",
+          "status": "ready",
+          "by": "D",
+          "comment": "Дубликат студенческого билета готов"
+        },
+        {
+          "at": "2026-11-18T12:30",
+          "status": "issued",
+          "by": "D",
+          "comment": "Выдан лично в деканате"
+        }
+      ],
+      "messages": []
+    }
+  ]
+}
