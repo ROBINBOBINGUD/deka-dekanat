@@ -5,7 +5,8 @@
 import express from 'express';
 import helmet from 'helmet';
 import { join } from 'node:path';
-import { randomBytes } from 'node:crypto';
+import { randomBytes, timingSafeEqual } from 'node:crypto';
+import { juryPage } from './jury.js';
 import {
   HttpError, hashPassword, verifyPassword, verifyAgainstDummy, startSession, endSession,
   loadUser, requireRole, assertLoginAllowed, reserveLoginAttempt, clearLoginFailures, randomId,
@@ -31,7 +32,7 @@ const plural = (n, one, few, many) => {
   return many;
 };
 
-export function createApp(db) {
+export function createApp(db, options = {}) {
   const app = express();
   const schedule = createSchedule(db);
   app.disable('x-powered-by');
@@ -623,6 +624,20 @@ export function createApp(db) {
 
   api.use((_req, _res) => { throw new HttpError(404, 'Такого адреса в API нет'); });
   app.use('/api', api);
+
+  // Страница для жюри по закрытой ссылке (см. server/jury.js). Без настроенной ссылки маршрута нет.
+  if (options.jury?.token) {
+    app.get('/jury/:token', (req, res) => {
+      const given = Buffer.from(String(req.params.token));
+      const want = Buffer.from(options.jury.token);
+      if (given.length !== want.length || !timingSafeEqual(given, want)) {
+        return res.status(404).type('text/plain').send('Не найдено');
+      }
+      res.setHeader('Cache-Control', 'no-store');
+      res.setHeader('X-Robots-Tag', 'noindex, nofollow');
+      res.type('html').send(juryPage(options.jury));
+    });
+  }
 
   // Описание процесса создания — тот же PDF, что лежит в репозитории, по постоянной ссылке со стенда.
   app.get('/opisanie.pdf', (_req, res) => {

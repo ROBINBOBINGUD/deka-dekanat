@@ -30,7 +30,16 @@ await warmUp();
 cleanup(db);
 setInterval(() => cleanup(db), 3600 * 1000).unref();
 
-const app = createApp(db);
+// Закрытая страница для жюри включается, только если в файле аккаунтов стенда задана ссылка.
+const stand = loadSeedFiles().accounts;
+const site = process.env.PUBLIC_URL || 'https://deka-ityorkedj.msk1.amvera.tech';
+const app = createApp(db, {
+  jury: stand._juryToken ? {
+    token: stand._juryToken,
+    accounts: stand,
+    links: { site, code: 'https://github.com/ROBINBOBINGUD/deka-dekanat', doc: `${site}/opisanie.pdf` },
+  } : null,
+});
 const server = app.listen(PORT, '0.0.0.0', () => {
   console.log(`«Дека» слушает порт ${PORT}, данные в ${DATA_DIR}`);
 });
