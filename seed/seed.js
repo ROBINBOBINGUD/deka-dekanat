@@ -1,7 +1,7 @@
 // Заполняет БД вымышленными данными из seed/data.json и тестовыми аккаунтами из seed/demo-accounts.json.
 // Запуск вручную: `npm run seed` (стирает прежние данные). Сервер сам вызывает сид, если БД пустая.
 
-import { readFileSync, mkdirSync } from 'node:fs';
+import { readFileSync, mkdirSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { randomBytes } from 'node:crypto';
 import { pathToFileURL } from 'node:url';
@@ -27,9 +27,19 @@ const verifyCode = () => {
   return `${s.slice(0, 5)}-${s.slice(5)}`;
 };
 
+/**
+ * Пароли тестовых аккаунтов. В открытом репозитории лежит demo-accounts.json — он годится только
+ * для локального запуска. На стенде для жюри используется demo-accounts.prod.json: его нет в
+ * открытом репозитории, он попадает на сервер только с веткой деплоя.
+ */
+export function accountsFile() {
+  const prod = process.env.DEKA_ACCOUNTS || join(HERE, 'demo-accounts.prod.json');
+  return existsSync(prod) ? prod : join(HERE, 'demo-accounts.json');
+}
+
 export const loadSeedFiles = () => ({
   data: JSON.parse(readFileSync(join(HERE, 'data.json'), 'utf8')),
-  accounts: JSON.parse(readFileSync(join(HERE, 'demo-accounts.json'), 'utf8')),
+  accounts: JSON.parse(readFileSync(accountsFile(), 'utf8')),
 });
 
 /**
@@ -150,9 +160,11 @@ export async function seedDatabase(db, data, accounts) {
       const electronic = a.payload?.delivery === 'electronic' && ['ready', 'issued'].includes(a.status);
       const pid = randomId(9);
       const last = a.events.at(-1);
+      const issuedAt = a.events.find((e) => e.status === 'ready')?.at ?? null;
       const r = db.run(
-        'INSERT INTO applications (public_id, student_id, type, payload, status, created_at, updated_at, verify_code) VALUES (?,?,?,?,?,?,?,?)',
-        pid, ids[a.student], a.type, JSON.stringify(a.payload ?? {}), a.status, a.createdAt, last?.at ?? a.createdAt, electronic ? verifyCode() : null);
+        'INSERT INTO applications (public_id, student_id, type, payload, status, created_at, updated_at, verify_code, issued_at) VALUES (?,?,?,?,?,?,?,?,?)',
+        pid, ids[a.student], a.type, JSON.stringify(a.payload ?? {}), a.status, a.createdAt, last?.at ?? a.createdAt,
+        electronic ? verifyCode() : null, issuedAt);
       for (const e of a.events) {
         db.run('INSERT INTO application_events (application_id, at, actor_id, status, comment) VALUES (?,?,?,?,?)',
           r.lastInsertRowid, e.at, ids[e.by] ?? null, e.status, e.comment ?? '');

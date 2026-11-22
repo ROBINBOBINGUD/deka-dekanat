@@ -4,7 +4,7 @@ import { mkdirSync } from 'node:fs';
 import { join } from 'node:path';
 import { openDb } from './db.js';
 import { createApp } from './app.js';
-import { cleanup } from './auth.js';
+import { cleanup, warmUp } from './auth.js';
 import { seedDatabase, loadSeedFiles } from '../seed/seed.js';
 
 // На Amvera приложение обязано слушать порт из amvera.yml (run.containerPort = 3000).
@@ -21,6 +21,7 @@ if (db.get('SELECT COUNT(*) AS n FROM users').n === 0 || process.env.RESEED === 
   console.log('БД заполнена вымышленными данными из seed/data.json');
 }
 
+await warmUp();
 cleanup(db);
 setInterval(() => cleanup(db), 3600 * 1000).unref();
 

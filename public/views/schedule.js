@@ -13,12 +13,12 @@ function pairRow(item, live) {
       <div>
         <h3 class="pair-title">${item.subject.name}</h3>
         <p class="pair-meta">
-          <span class="chip">${KIND[item.kind] ?? item.kind}</span>
+          <span>${KIND[item.kind] ?? item.kind}</span>
           ${item.room && html`<span class="pair-room">${icon('map-pin')}${item.room}</span>`}
           ${item.teacher && html`<span title="${item.teacher.name}, ${item.teacher.title ?? ''}">${icon('user')}${shortName(item.teacher.name)}</span>`}
         </p>
         ${item.change && html`<p class="pair-change"><span class="mark">${cap(changeText(item))}</span>${item.change.note ? ` ${item.change.note}` : ''}</p>`}
-        ${live && html`<p class="pair-change"><span class="chip chip--ok">идёт сейчас</span></p>`}
+        ${live && html`<p class="pair-change pair-live">Идёт сейчас</p>`}
       </div>
     </li>`;
 }
@@ -93,7 +93,7 @@ export async function scheduleView(ctx) {
         <a class="round" href="${link(addDays(monday, -7))}" aria-label="Предыдущая неделя">${icon('chevron-left')}</a>
         <p class="weekbar-title">
           <b>${fmtDay(monday).split(' ')[0]}–${fmtDay(addDays(monday, 5))}</b>
-          <span>${weekInfo.week}-я неделя, ${weekInfo.parity === 'odd' ? 'нечётная (числитель)' : 'чётная (знаменатель)'}</span>
+          <span>${weekInfo.week}-я неделя, ${weekInfo.parity === 'odd' ? 'числитель' : 'знаменатель'}</span>
         </p>
         <a class="round" href="${link(addDays(monday, 7))}" aria-label="Следующая неделя">${icon('chevron-right')}</a>
       </div>

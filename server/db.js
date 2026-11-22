@@ -74,7 +74,7 @@ CREATE TABLE IF NOT EXISTS applications (
   id INTEGER PRIMARY KEY, public_id TEXT NOT NULL UNIQUE,
   student_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
   type TEXT NOT NULL, payload TEXT NOT NULL, status TEXT NOT NULL,
-  created_at TEXT NOT NULL, updated_at TEXT NOT NULL, verify_code TEXT UNIQUE
+  created_at TEXT NOT NULL, updated_at TEXT NOT NULL, verify_code TEXT UNIQUE, issued_at TEXT
 );
 CREATE INDEX IF NOT EXISTS applications_student ON applications(student_id);
 CREATE TABLE IF NOT EXISTS application_events (
@@ -85,6 +85,8 @@ CREATE TABLE IF NOT EXISTS application_messages (
   id INTEGER PRIMARY KEY, application_id INTEGER NOT NULL REFERENCES applications(id) ON DELETE CASCADE,
   author_id INTEGER NOT NULL, text TEXT NOT NULL, at TEXT NOT NULL
 );
+CREATE INDEX IF NOT EXISTS messages_application ON application_messages(application_id, at, id);
+CREATE INDEX IF NOT EXISTS messages_author ON application_messages(author_id, at);
 CREATE TABLE IF NOT EXISTS notifications (
   id INTEGER PRIMARY KEY, user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
   kind TEXT NOT NULL, title TEXT NOT NULL, body TEXT, link TEXT,

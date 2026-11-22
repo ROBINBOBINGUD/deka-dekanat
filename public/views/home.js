@@ -41,7 +41,7 @@ function hero(d) {
   }
   const it = n.item;
   let state;
-  if (n.going) state = html`<span class="now-state mark">Идёт сейчас, до конца ${fmtDuration(toMinutes(it.end) - toMinutes(now))}</span>`;
+  if (n.going) state = html`<span class="now-state">Идёт сейчас, до конца ${fmtDuration(toMinutes(it.end) - toMinutes(now))}</span>`;
   else if (n.isToday) state = html`<span class="now-state">Следующая пара через ${fmtDuration(toMinutes(it.start) - toMinutes(now))}</span>`;
   else {
     const when = relDay(n.date, today);
@@ -82,7 +82,19 @@ function daysLeft(n) {
   return html`<span class="days-left ${n <= 3 ? 'is-hot' : ''}">${n} ${plural(n, 'день', 'дня', 'дней')}</span>`;
 }
 
-const VERDICT_ICON = { ok: 'circle-check', attention: 'triangle-alert', debt: 'flame' };
+const RESOLUTION = { ok: ['ok', 'в порядке'], attention: ['warn', 'внимание'], debt: ['bad', 'долг'] };
+
+/** Вывод «как дела с учёбой»: одна фраза, пояснение и штамп-резолюция. Общий для «Сегодня» и «Учёбы». */
+export function resolution(study, tag = 'h2', action = '') {
+  const [tone, label] = RESOLUTION[study.state] ?? RESOLUTION.ok;
+  const title = tag === 'h3' ? html`<h3>${study.headline}</h3>` : html`<h2>${study.headline}</h2>`;
+  return html`
+    <div class="resolution">
+      <div class="resolution-head">${title}<span class="stamp stamp--${tone}">${label}</span></div>
+      <p>${study.advice}</p>
+      ${action}
+    </div>`;
+}
 
 export async function homeView(ctx) {
   const d = await api.get('/home');
@@ -92,14 +104,19 @@ export async function homeView(ctx) {
   const changes = d.changes.length ? html`
     <section class="block">
       <div class="block-head"><h2>Изменения в расписании</h2><a href="/schedule">Расписание</a></div>
-      <div class="rows">
+      <div class="rows ledger">
         ${d.changes.map((c) => html`
           <a class="row" href="/schedule?date=${c.date}">
             <div class="row-main">
               <p class="row-title">${c.subject}</p>
-              <p class="row-sub"><span class="mark">${cap(changeText({ change: c.change, room: c.room }))}</span>${c.change.note ? ` ${c.change.note}` : ''}</p>
+              <p class="row-sub">
+                ${c.change.type === 'replace' && c.change.was
+                  ? html`<span class="mark">Замена</span> было: ${c.change.was}`
+                  : html`<span class="mark">${cap(changeText({ change: c.change, room: c.room }))}</span>`}
+                ${c.change.note ? html`<span class="change-note">${c.change.note}</span>` : ''}
+              </p>
             </div>
-            <div class="row-side"><span class="chip">${relDay(c.date, today)}</span><span class="muted">${c.pair}-я пара</span></div>
+            <div class="row-side"><time datetime="${c.date}">${relDay(c.date, today)}</time><span>${c.pair}-я пара</span></div>
           </a>`)}
       </div>
     </section>` : '';
@@ -107,7 +124,7 @@ export async function homeView(ctx) {
   const deadlines = html`
     <section class="block">
       <div class="block-head"><h2>Сроки</h2></div>
-      ${d.deadlines.length ? html`<div class="rows">
+      ${d.deadlines.length ? html`<div class="rows ledger">
         ${d.deadlines.map((x) => html`
           <a class="row" href="${x.link || '/'}">
             <div class="row-main"><p class="row-title">${x.title}</p><p class="row-sub">до ${fmtDay(x.due)}${x.due.length > 10 ? `, ${x.due.slice(11, 16)}` : ''}</p></div>
@@ -119,10 +136,7 @@ export async function homeView(ctx) {
   const study = html`
     <section class="block">
       <div class="block-head"><h2>Учёба</h2><a href="/study">Подробнее</a></div>
-      <a class="verdict verdict--${d.study.state}" href="/study">
-        ${icon(VERDICT_ICON[d.study.state])}
-        <div><h3>${d.study.headline}</h3><p>${d.study.advice}</p></div>
-      </a>
+      ${resolution(d.study, 'h3')}
     </section>`;
 
   const apps = html`
@@ -143,11 +157,11 @@ export async function homeView(ctx) {
       <div class="block-head"><h2>Объявления деканата</h2><a href="/inbox?filter=announcement">Все</a></div>
       ${d.news.length ? html`<div class="rows">
         ${d.news.map((x) => html`
-          <a class="news-item" href="/inbox?filter=announcement">
-            <h3>${x.important ? html`<span class="chip chip--bad">важное</span> ` : ''}${x.title}</h3>
+          <article class="news-item">
+            <h3>${x.title}</h3>
             <p>${x.body}</p>
-            <time>${fmtStamp(x.at, today)}</time>
-          </a>`)}
+            <time>${fmtStamp(x.at, today)}${x.important ? html`, <span class="news-important">важное</span>` : ''}</time>
+          </article>`)}
       </div>` : empty('megaphone', 'Объявлений пока нет', '')}
     </section>`;
 

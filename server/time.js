@@ -49,6 +49,13 @@ export function isDate(s) {
   return typeof s === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(s) && !Number.isNaN(toUtc(s).getTime());
 }
 
+/** Момент на n минут раньше, в том же формате YYYY-MM-DDTHH:MM:SS. */
+export function minusMinutes(iso, n) {
+  const d = new Date(`${iso.length === 16 ? `${iso}:00` : iso}Z`);
+  d.setUTCMinutes(d.getUTCMinutes() - n);
+  return d.toISOString().slice(0, 19);
+}
+
 /** Сколько полных суток от даты a до даты b (b − a). */
 export function daysBetween(a, b) {
   return Math.round((toUtc(b.slice(0, 10)) - toUtc(a.slice(0, 10))) / 86400000);

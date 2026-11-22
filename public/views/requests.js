@@ -179,7 +179,7 @@ export async function requestDetailView(ctx) {
 
       <section class="block">
         <div class="block-head"><h2>Что в заявке</h2></div>
-        <dl class="kv sheet">${a.details.map((d) => html`<dt>${d.label}</dt><dd>${d.value}</dd>`)}</dl>
+        <dl class="kv">${a.details.map((d) => html`<dt>${d.label}</dt><dd>${d.value}</dd>`)}</dl>
       </section>
 
       <section class="block">

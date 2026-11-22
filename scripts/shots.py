@@ -18,7 +18,9 @@ ROOT = Path(__file__).resolve().parent.parent
 BASE = sys.argv[1].rstrip("/")
 OUT = Path(sys.argv[2])
 WHO = sys.argv[3] if len(sys.argv) > 3 else "all"
-ACCOUNTS = json.loads((ROOT / "seed" / "demo-accounts.json").read_text(encoding="utf-8"))
+# Как и сервер: если есть файл с паролями стенда для жюри — берём его, иначе локальные.
+_PROD = ROOT / "seed" / "demo-accounts.prod.json"
+ACCOUNTS = json.loads((_PROD if _PROD.exists() else ROOT / "seed" / "demo-accounts.json").read_text(encoding="utf-8"))
 
 VIEWPORTS = {"m": {"width": 360, "height": 780}, "d": {"width": 1280, "height": 860}}
 STUDENT = [

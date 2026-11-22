@@ -63,8 +63,8 @@ export function buildGrades(db, studentId, today) {
     .sort((a, b) => a.date.localeCompare(b.date));
 
   let state = 'ok';
-  let headline = 'Всё идёт хорошо';
-  let advice = 'Долгов нет, по всем дисциплинам баллы выше порога. Так держать.';
+  let headline = 'Долгов нет, баллы выше порога';
+  let advice = 'По всем дисциплинам семестра набрано больше половины возможных баллов, пропусков немного.';
   if (risks.length) {
     state = 'attention';
     headline = `${risks.length} ${plural(risks.length, 'дисциплина требует', 'дисциплины требуют', 'дисциплин требуют')} внимания`;

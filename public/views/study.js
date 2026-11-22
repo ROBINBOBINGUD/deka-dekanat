@@ -1,7 +1,6 @@
-import { html, icon, api, stamp, empty, fmtDay, fmtDayYear, daysBetween, plural, WD_SHORT, weekdayOf } from '../ui.js';
-import { shortName } from './home.js';
+import { html, icon, api, stamp, empty, cap, fmtDay, fmtDayYear, daysBetween, plural, WD_SHORT, weekdayOf } from '../ui.js';
+import { shortName, resolution } from './home.js';
 
-const VERDICT_ICON = { ok: 'circle-check', attention: 'triangle-alert', debt: 'flame' };
 const MONTH_SHORT = ['янв', 'фев', 'мар', 'апр', 'мая', 'июн', 'июл', 'авг', 'сен', 'окт', 'ноя', 'дек'];
 
 function finalMark(item) {
@@ -11,7 +10,25 @@ function finalMark(item) {
   return html`<span class="grade ${item.final === '2' ? 'grade--bad' : ''}" aria-label="оценка ${item.final}">${item.final}</span>`;
 }
 
-const tone = (p) => (p === null ? '' : p >= 70 ? 'bar--ok' : p >= 50 ? 'bar--warn' : 'bar--bad');
+/**
+ * Прогноз по балльно-рейтинговой системе: 60 баллов за семестр + 40 за экзамен или зачёт.
+ * Говорит, сколько ещё нужно набрать из оставшихся баллов до «удовлетворительно», «хорошо» и «отлично».
+ */
+function forecast(item) {
+  const left = (item.total - item.held) + 40;          // ещё не разыгранные баллы
+  const steps = [['отлично', 85], ['хорошо', 70], ['удовлетворительно', 50]];
+  const graded = ['exam', 'diff', 'course'].includes(item.control);
+  if (!graded) {
+    const need = Math.max(50 - item.earned, 0);
+    if (need === 0) return 'Порог зачёта (50 баллов) уже пройден';
+    return need <= left ? `До зачёта нужно ещё ${need} из оставшихся ${left} баллов` : 'Зачёт по баллам уже не набрать — поговорите с преподавателем';
+  }
+  const reachable = steps.find(([, min]) => item.earned + left >= min);
+  if (!reachable) return 'По баллам порог уже не набрать — поговорите с преподавателем';
+  const [label, min] = reachable;
+  const need = Math.max(min - item.earned, 0);
+  return need === 0 ? `«${cap(label)}» уже набрано по баллам` : `Лучший возможный итог — «${label}»: нужно ещё ${need} из оставшихся ${left} баллов`;
+}
 
 /** Дисциплина текущего семестра: баллы, полоса прогресса, контрольные точки по клику. */
 function current(item, today) {
@@ -20,16 +37,17 @@ function current(item, today) {
       <summary>
         <span class="disc-name">${item.subject}</span>
         <span class="disc-score">${item.earned}<small>из ${item.held || item.total}</small></span>
+        ${icon('chevron-down', 'disc-toggle')}
         <span class="disc-meta">
           <span>${item.controlLabel}</span>
-          ${item.risk ? html`<span class="chip chip--bad">${icon('triangle-alert')}под риском</span>` : ''}
+          ${item.risk ? html`<span class="disc-risk">под риском</span>` : ''}
           ${item.absences ? html`<span>пропусков ${item.absences} из ${item.classesHeld}</span>` : ''}
         </span>
-        <span class="bar ${tone(item.percent)}"><i style="width:${item.percent ?? 0}%"></i></span>
       </summary>
       <div class="disc-body">
         ${item.teacher ? html`<p class="block-note">Преподаватель: ${shortName(item.teacher)}</p>` : ''}
         ${item.risk ? html`<p class="block-note"><span class="mark">Почему под риском</span> ${item.risk}.</p>` : ''}
+        <p class="block-note">${icon('info', 'inline')} ${forecast(item)}</p>
         <table class="points">
           <tbody>
             ${item.checkpoints.map((c) => html`
@@ -89,11 +107,11 @@ export async function studyView(ctx) {
   let body;
   if (tab === 'now') {
     body = cur ? html`
-      <p class="block-note">${cur.number} семестр. Баллы за контрольные точки; нажмите на дисциплину, чтобы увидеть детали.
+      <p class="block-note">${cur.number}-й семестр, баллы за контрольные точки.
         ${sum.nextCheckpoint ? html`Ближайшая точка: ${sum.nextCheckpoint.title.toLowerCase()} по дисциплине «${sum.nextCheckpoint.subject}», ${fmtDay(sum.nextCheckpoint.date)}.` : ''}</p>
       <div>${cur.items.map((i) => current(i, s.today))}</div>` : empty('book-open', 'Дисциплин пока нет', '');
   } else if (tab === 'book') {
-    body = past.length ? past.map(book) : empty('book-open', 'Зачётка пока пустая', 'Первые оценки появятся после зимней сессии.');
+    body = past.length ? html`<div class="record-book">${past.map(book)}</div>` : empty('book-open', 'Зачётка пока пустая', 'Первые оценки появятся после зимней сессии.');
   } else {
     body = session(s.events, s.today);
   }
@@ -102,17 +120,10 @@ export async function studyView(ctx) {
     title: 'Учёба',
     body: html`
       <div class="screen-head"><h1 class="screen-title">Учёба</h1></div>
-      <section class="verdict verdict--${sum.state}">
-        ${icon(VERDICT_ICON[sum.state])}
-        <div>
-          <h2>${sum.headline}</h2>
-          <p>${sum.advice}</p>
-          ${debt ? html`<a class="btn btn--small" href="/requests/new/retake?subject=${debt.subjectId}">Подать на пересдачу</a>` : ''}
-        </div>
-      </section>
+      ${resolution(sum, 'h2', debt ? html`<a class="btn btn--small" href="/requests/new/retake?subject=${debt.subjectId}">Подать на пересдачу</a>` : '')}
       <div class="stats">
         <div class="stat"><b>${sum.gpa === null ? '—' : sum.gpa.toFixed(2).replace('.', ',')}</b><span>средний балл по зачётке</span></div>
-        <div class="stat"><b>${sum.progress.percent === null ? '—' : `${sum.progress.percent}%`}</b><span>баллов набрано в семестре</span></div>
+        <div class="stat"><b>${sum.progress.percent === null ? '—' : `${sum.progress.percent}%`}</b><span>баллов за проверенные работы</span></div>
         <div class="stat"><b>${sum.closed}</b><span>${plural(sum.closed, 'дисциплина закрыта', 'дисциплины закрыты', 'дисциплин закрыто')}</span></div>
       </div>
       <div class="tabs">

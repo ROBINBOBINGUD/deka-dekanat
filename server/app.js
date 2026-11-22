@@ -8,12 +8,13 @@ import { join } from 'node:path';
 import { randomBytes } from 'node:crypto';
 import {
   HttpError, hashPassword, verifyPassword, verifyAgainstDummy, startSession, endSession,
-  loadUser, requireRole, assertLoginAllowed, recordLoginFailure, clearLoginFailures, randomId,
+  loadUser, requireRole, assertLoginAllowed, reserveLoginAttempt, clearLoginFailures, randomId,
+  withPasswordSlot, tooLongForBcrypt,
 } from './auth.js';
 import { TYPES, STATUS_LABEL, TRANSITIONS, ACTIVE, validatePayload, describePayload } from './applicationTypes.js';
 import { createSchedule } from './schedule.js';
 import { buildGrades } from './grades.js';
-import { nowMsk, addDays, isDate, mondayOf, daysBetween, weekday } from './time.js';
+import { nowMsk, addDays, isDate, mondayOf, daysBetween, weekday, minusMinutes } from './time.js';
 
 const PUBLIC_DIR = join(import.meta.dirname, '..', 'public');
 const clean = (v) => String(v ?? '').replace(/\s+/g, ' ').trim();
@@ -34,7 +35,10 @@ export function createApp(db) {
   const app = express();
   const schedule = createSchedule(db);
   app.disable('x-powered-by');
-  app.set('trust proxy', 1);
+  // Заголовкам X-Forwarded-* верим, только когда перед нами действительно стоит прокси площадки.
+  // При прямом запуске клиент мог бы подделать свой IP и обойти лимит попыток входа.
+  const proxyHops = Number(process.env.TRUST_PROXY ?? (process.env.AMVERA ? 1 : 0)) || 0;
+  app.set('trust proxy', proxyHops > 0 ? proxyHops : false);
 
   app.use(helmet({
     contentSecurityPolicy: {
@@ -73,7 +77,7 @@ export function createApp(db) {
     if (origin) {
       let host = null;
       try { host = new URL(origin).host; } catch { /* оставляем null */ }
-      const own = [req.get('Host'), req.get('X-Forwarded-Host'), ...(process.env.ALLOWED_HOSTS || '').split(',')]
+      const own = [req.get('Host'), proxyHops > 0 ? req.get('X-Forwarded-Host') : null, ...(process.env.ALLOWED_HOSTS || '').split(',')]
         .filter(Boolean).map((h) => h.trim());
       if (!own.includes(host)) throw new HttpError(403, 'Запрос отклонён');
     }
@@ -93,17 +97,19 @@ export function createApp(db) {
     const login = clean(req.body?.login).toLowerCase();
     const password = String(req.body?.password ?? '');
     if (!login || !password) throw new HttpError(400, 'Введите логин и пароль');
-    if (login.length > 64 || password.length > 200) throw new HttpError(400, 'Слишком длинное значение');
+    if (login.length > 64 || tooLongForBcrypt(password)) throw new HttpError(400, 'Слишком длинное значение');
     assertLoginAllowed(db, login, req.ip);
+    const attempt = reserveLoginAttempt(db, login, req.ip);   // засчитываем попытку до проверки пароля
     const user = db.get('SELECT id, password_hash FROM users WHERE login = ?', login);
-    let ok = false;
-    if (user) ok = await verifyPassword(password, user.password_hash);
-    else await verifyAgainstDummy(password);
-    if (!ok) {
-      recordLoginFailure(db, login, req.ip);
-      throw new HttpError(401, 'Неверный логин или пароль');
-    }
-    clearLoginFailures(db, login, req.ip);
+    const ok = await withPasswordSlot(async () => {
+      if (user) return verifyPassword(password, user.password_hash);
+      await verifyAgainstDummy(password);
+      return false;
+    });
+    // Пока считался bcrypt, пароль могли сменить: сессию выдаём, только если хеш всё тот же.
+    const stillValid = ok && db.get('SELECT 1 AS x FROM users WHERE id = ? AND password_hash = ?', user.id, user.password_hash);
+    if (!stillValid) throw new HttpError(401, 'Неверный логин или пароль');
+    clearLoginFailures(db, login, req.ip, attempt);
     startSession(db, req, res, user.id);
     res.json({ ok: true });
   });
@@ -119,13 +125,18 @@ export function createApp(db) {
     }
     const current = String(req.body?.current ?? '');
     const next = String(req.body?.next ?? '');
-    if (next.length < 8 || next.length > 200) throw new HttpError(400, 'Новый пароль — от 8 символов', { fields: { next: 'От 8 символов' } });
+    if (next.length < 8) throw new HttpError(400, 'Новый пароль — от 8 символов', { fields: { next: 'От 8 символов' } });
+    if (tooLongForBcrypt(next)) throw new HttpError(400, 'Новый пароль слишком длинный', { fields: { next: 'Не длиннее 72 байт (около 36 русских букв)' } });
     const row = db.get('SELECT password_hash FROM users WHERE id = ?', req.user.id);
-    if (!(await verifyPassword(current, row.password_hash))) {
-      throw new HttpError(400, 'Текущий пароль не подходит', { fields: { current: 'Не подходит' } });
-    }
-    db.run('UPDATE users SET password_hash = ? WHERE id = ?', await hashPassword(next), req.user.id);
-    db.run('DELETE FROM sessions WHERE user_id = ? AND id_hash <> ?', req.user.id, req.sessionHash);
+    const matches = !tooLongForBcrypt(current) && await withPasswordSlot(() => verifyPassword(current, row.password_hash));
+    if (!matches) throw new HttpError(400, 'Текущий пароль не подходит', { fields: { current: 'Не подходит' } });
+    const fresh = await withPasswordSlot(() => hashPassword(next));
+    // Меняем только если хеш всё ещё прежний, и в той же транзакции закрываем остальные сеансы.
+    db.tx(() => {
+      const r = db.run('UPDATE users SET password_hash = ? WHERE id = ? AND password_hash = ?', fresh, req.user.id, row.password_hash);
+      if (!r.changes) throw new HttpError(409, 'Пароль уже изменён в другом сеансе. Войдите заново.');
+      db.run('DELETE FROM sessions WHERE user_id = ? AND id_hash <> ?', req.user.id, req.sessionHash);
+    });
     res.json({ ok: true });
   });
 
@@ -241,7 +252,7 @@ export function createApp(db) {
       .map((e) => ({ at: e.at, status: e.status, statusLabel: STATUS_LABEL[e.status], comment: e.comment || '', by: e.role === 'staff' ? 'staff' : 'student' }));
     out.messages = db.all(
       `SELECT m.at, m.text, m.author_id AS authorId, u.role FROM application_messages m JOIN users u ON u.id = m.author_id
-        WHERE m.application_id = ? ORDER BY m.at, m.id`, row.id)
+        WHERE m.application_id = ? ORDER BY m.at, m.id LIMIT 200`, row.id)
       .map((m) => ({ at: m.at, text: m.text, mine: m.authorId === viewerId, by: m.role }));
     out.verify = row.verify_code && ['ready', 'issued'].includes(row.status) ? { code: row.verify_code } : null;
     out.canCancel = row.status === 'submitted';
@@ -314,6 +325,12 @@ export function createApp(db) {
     const text = multiline(req.body?.text);
     if (!text) throw new HttpError(400, 'Напишите сообщение');
     if (text.length > 1000) throw new HttpError(400, 'Сообщение не длиннее 1000 символов');
+    // Переписку нельзя «залить»: не больше 30 сообщений в час от одного человека и 200 на одну заявку.
+    const hourAgo = minusMinutes(nowMsk().iso, 60);
+    const mine = db.get('SELECT COUNT(*) AS n FROM application_messages WHERE author_id = ? AND at > ?', req.user.id, hourAgo).n;
+    const total = db.get('SELECT COUNT(*) AS n FROM application_messages WHERE application_id = ?', row.id).n;
+    if (mine >= 30) throw new HttpError(429, 'Слишком много сообщений за час. Продолжите позже.');
+    if (total >= 200) throw new HttpError(409, 'В этой заявке слишком длинная переписка. Создайте новую заявку.');
     const now = nowMsk().iso;
     db.run('INSERT INTO application_messages (application_id, author_id, text, at) VALUES (?,?,?,?)', row.id, req.user.id, text, now);
     db.run('UPDATE applications SET updated_at = ? WHERE id = ?', now, row.id);
@@ -456,7 +473,10 @@ export function createApp(db) {
     db.tx(() => {
       let code = row.verify_code;
       if (status === 'ready' && payload.delivery === 'electronic' && !code) code = verifyCode();
-      db.run('UPDATE applications SET status = ?, updated_at = ?, verify_code = ? WHERE id = ?', status, now, code ?? null, row.id);
+      // Дата выдачи фиксируется один раз и не меняется от последующей переписки.
+      const issuedAt = row.issued_at ?? (status === 'ready' ? now : null);
+      db.run('UPDATE applications SET status = ?, updated_at = ?, verify_code = ?, issued_at = ? WHERE id = ?',
+        status, now, code ?? null, issuedAt, row.id);
       db.run('INSERT INTO application_events (application_id, at, actor_id, status, comment) VALUES (?,?,?,?,?)',
         row.id, now, req.user.id, status, comment);
       const title = `${type?.title ?? 'Заявка'}: ${STATUS_LABEL[status].toLowerCase()}`;
@@ -584,7 +604,7 @@ export function createApp(db) {
   api.get('/verify/:code', (req, res) => {
     const code = String(req.params.code).toUpperCase().slice(0, 16);
     const row = db.get(
-      `SELECT a.type, a.status, a.updated_at AS at, u.full_name AS fullName, g.program_code AS programCode,
+      `SELECT a.type, a.status, COALESCE(a.issued_at, a.updated_at) AS at, u.full_name AS fullName, g.program_code AS programCode,
               g.program_name AS programName, g.course, s.study_form AS studyForm
          FROM applications a JOIN users u ON u.id = a.student_id JOIN students s ON s.user_id = u.id
          JOIN groups g ON g.code = s.group_code WHERE a.verify_code = ?`, code);

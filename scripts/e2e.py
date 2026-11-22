@@ -20,7 +20,9 @@ if sys.platform == "win32":
 ROOT = Path(__file__).resolve().parent.parent
 BASE = sys.argv[1].rstrip("/")
 OUT = Path(sys.argv[2]) if len(sys.argv) > 2 else None
-ACCOUNTS = json.loads((ROOT / "seed" / "demo-accounts.json").read_text(encoding="utf-8"))
+# Как и сервер: если есть файл с паролями стенда для жюри — берём его, иначе локальные.
+_PROD = ROOT / "seed" / "demo-accounts.prod.json"
+ACCOUNTS = json.loads((_PROD if _PROD.exists() else ROOT / "seed" / "demo-accounts.json").read_text(encoding="utf-8"))
 MOBILE = {"width": 360, "height": 780}
 errors = []
 step_no = 0
@@ -77,7 +79,7 @@ with sync_playwright() as p:
 
     step("Учёба: семестр, зачётка, сессия")
     student.click(".tabbar a[href='/study']")
-    expect(student.locator(".verdict")).to_be_visible()
+    expect(student.locator(".resolution")).to_be_visible()
     student.click(".seg a:has-text('Зачётка')")
     expect(student.locator(".sem-title").first).to_be_visible()
     student.click(".seg a:has-text('Сессия')")
@@ -174,7 +176,7 @@ with sync_playwright() as p:
 
     step("Второй студент подаёт заявление на пересдачу прямо из «Учёбы»")
     other.goto(f"{BASE}/study")
-    other.click(".verdict a.btn")
+    other.click(".resolution a.btn")
     other.wait_for_url("**/requests/new/retake*")
     other.fill("[name=wish]", "Любой день после 10 декабря")
     other.click("form button[type=submit]")

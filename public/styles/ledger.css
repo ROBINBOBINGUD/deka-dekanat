@@ -1,0 +1,112 @@
+/* Итерация 3: правки по независимой критике Codex (GPT-6.2 Sol).
+   Смысл: меньше рамок, плашек и карточек — больше «страницы в линейку», как в зачётке.
+   Файл подключается после app.css и уточняет его правила. */
+
+:root { --r-panel: 16px; --r-sheet: 12px; --r-ctl: 8px; --r-chip: 4px; --field-line: #8690AF; }
+
+/* страница белая, как лист; серый остаётся только под публичными экранами */
+body, .shell { background: var(--surface); }
+.bare, .auth-form { background: var(--paper); }
+.topbar { background: var(--surface); backdrop-filter: none; border-bottom: 1px solid var(--line); }
+.block { margin-top: 24px; }
+.block-head { align-items: center; }
+.sheet { padding: 0; border-radius: 0; background: none; }
+
+/* доступность: цели нажатия 44 px, фокус и границы полей с контрастом не ниже 3:1 */
+.block-head a, .seg a, .seg button, .btn--small, .filters a, .suggest button, a.chip { min-height: 44px; }
+a.chip { padding-inline: 12px; }
+:focus-visible, .choice input:focus-visible + span { outline-color: var(--stamp); }
+.rail :focus-visible, .auth-brand :focus-visible, .now :focus-visible, .idcard :focus-visible { outline-color: var(--marker); }
+.tab:focus-visible { outline-offset: -4px; }
+.field input:not(:focus, [aria-invalid="true"]), .field select:not(:focus, [aria-invalid="true"]),
+.field textarea:not(:focus, [aria-invalid="true"]), .send textarea:not(:focus),
+.choice input:not(:checked) + span { border-color: var(--field-line); }
+.btn--quiet { box-shadow: inset 0 0 0 1.5px var(--field-line); }
+
+/* штамп: мелкие статусы набраны текстовым шрифтом, чтобы читались */
+.stamp { padding: 2px 8px; border-radius: var(--r-chip); font: 600 13px/16px var(--font); }
+.stamp--big { padding: 4px 12px; font-size: 16px; line-height: 20px; }
+.stamp--warn { color: var(--warn); }
+
+/* «Сегодня»: лента дня — одна линейка, а не шесть плиток; маркер только у изменений */
+.now-state { margin-top: 0; color: #D5DBF1; }
+.now-main { margin-top: 12px; }
+.now-time { font-size: 32px; }
+.strip { gap: 4px; margin-top: 20px; }
+.slot, .slot.is-busy, .slot.is-now, .slot.is-changed, .slot.is-off {
+  height: 44px; align-items: flex-start; justify-content: flex-start; padding: 8px 0 0 2px;
+  border: 0; border-top: 2px solid rgba(255, 255, 255, .22); border-radius: 0; background: none; color: rgba(255, 255, 255, .45);
+}
+.slot.is-busy { border-top-color: rgba(255, 255, 255, .7); color: #fff; }
+.slot.is-done { opacity: 1; border-top-color: rgba(255, 255, 255, .35); color: rgba(255, 255, 255, .6); }
+.slot.is-now { padding-top: 6px; border-top: 4px solid #fff; color: #fff; }
+.slot.is-changed, .slot.is-off { padding-top: 6px; border-top: 4px solid var(--marker); color: var(--marker); }
+@media (min-width: 960px) { .now-time { font-size: 44px; } .slot { height: 48px; } }
+
+.ledger .row { display: grid; grid-template-columns: minmax(0, 1fr) 88px; align-items: start; gap: 12px; }
+.ledger .row-side { gap: 0; color: var(--muted); font-size: 14px; line-height: 20px; }
+.ledger .row-side time { color: var(--text); font-weight: 600; }
+.ledger .days-left { text-align: right; font: 600 14px/20px var(--font); }
+.change-note { display: block; margin-top: 4px; }
+.news-important { color: var(--bad); font-weight: 600; font-size: 13px; }
+
+/* расписание: вкладки и дни на общей линии, текущая пара — отметка на полях */
+.seg { padding: 0; gap: 4px; border-radius: 0; background: none; border-bottom: 1px solid var(--line); }
+.seg a, .seg button { padding-inline: 12px; border-radius: 0; }
+.seg .is-active { background: none; box-shadow: inset 0 -2px var(--ink); }
+.round { border-radius: var(--r-ctl); background: none; box-shadow: none; }
+.round:hover { background: var(--paper); box-shadow: none; }
+.daypills { gap: 4px; border-bottom: 1px solid var(--line); }
+.daypill, .daypill.is-active { height: 56px; border-radius: 0; background: none; box-shadow: none; }
+.daypill.is-active { box-shadow: inset 0 -3px var(--ink); }
+.daypill.is-active b { color: var(--ink); }
+.daypill.is-active small { color: var(--muted); }
+.daypill.is-today small { color: var(--stamp); font-weight: 600; }
+.daypill.has-change::after { top: 4px; right: 8px; box-shadow: none; }
+.pair.is-now { margin: 0; padding: 16px 0 16px 12px; border-radius: 0; border-color: var(--line); background: none; box-shadow: inset 4px 0 var(--ink); }
+.pair.is-now + .pair { border-top-color: var(--line); }
+.pair-live { color: var(--ok); font-weight: 600; }
+.pair.is-off .pair-slot b { color: var(--muted); }
+
+/* учёба: вывод — как резолюция со штампом, цифры — строкой, дисциплины — ведомостью */
+.resolution { padding: 16px 0; border-block: 1px solid var(--line); }
+.resolution-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
+.resolution h2, .resolution h3 { font: 500 18px/1.3 var(--display); color: var(--ink); }
+.resolution p { margin-top: 8px; color: var(--muted); font-size: 14px; line-height: 1.5; }
+.resolution .btn { margin-top: 12px; }
+.resolution .stamp { flex: none; margin-top: 2px; }
+.stats { gap: 12px; margin-top: 0; border-bottom: 1px solid var(--line); }
+.stat { padding: 12px 0; border-radius: 0; background: none; }
+.stat b { font-size: 20px; }
+.disc summary { grid-template-columns: minmax(0, 1fr) auto 16px; gap: 4px 12px; align-items: start; min-height: 44px; }
+.disc-name { grid-area: 1 / 1; }
+.disc-meta { grid-area: 2 / 1; }
+.disc-score { grid-area: 1 / 2 / span 2; font-size: 18px; }
+.disc-toggle { grid-area: 1 / 3; width: 16px; height: 20px; color: var(--muted); transition: transform .15s; }
+.disc[open] .disc-toggle { transform: rotate(180deg); }
+.disc-risk { color: var(--bad); font-weight: 600; }
+
+/* единственный декоративный мотив: край переплёта и два стежка у страниц зачётки */
+.record-book { position: relative; padding-inline-start: 12px; }
+.record-book::before, .record-book::after { content: ''; position: absolute; }
+.record-book::before { inset-block: 0; inset-inline-start: 3px; inline-size: 1px; background: var(--line-strong); }
+.record-book::after { inset-block-start: 8px; inset-inline-start: 0; inline-size: 7px; block-size: 2px; border-radius: 2px; background: var(--muted); box-shadow: 0 16px 0 var(--muted); }
+
+/* заявка: факты и переписка — записи в линейку, а не карточка и пузыри мессенджера */
+.kv { grid-template-columns: minmax(0, 120px) minmax(0, 1fr); gap: 0 16px; border-bottom: 1px solid var(--line); }
+.kv > * { padding: 8px 0; border-top: 1px solid var(--line); }
+.chat { gap: 0; margin-bottom: 16px; border-bottom: 1px solid var(--line); }
+.msg, .msg--mine {
+  display: flex; flex-direction: column-reverse; justify-self: stretch; width: 100%; max-width: none;
+  padding: 12px 0; border-top: 1px solid var(--line); border-radius: 0; background: none;
+}
+.msg small { margin: 0 0 4px; font-size: 13px; font-weight: 600; color: var(--muted); }
+.msg--mine small { color: var(--stamp); }
+
+/* вход на телефоне: форма выше, без перечня преимуществ */
+@media (max-width: 899px) {
+  .auth-brand { padding: 24px 24px 20px; }
+  .auth-brand h1 { margin-top: 20px; font-size: 24px; }
+  .auth-brand ul { display: none; }
+  .auth-form { padding: 24px; border-radius: var(--r-panel) var(--r-panel) 0 0; }
+}

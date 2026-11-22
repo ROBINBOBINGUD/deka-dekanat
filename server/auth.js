@@ -89,15 +89,36 @@ export function assertLoginAllowed(db, login, ip) {
   }
 }
 
-export function recordLoginFailure(db, login, ip) {
-  const at = Date.now();
-  db.run('INSERT INTO login_attempts (key, at) VALUES (?, ?)', `l:${login}|${ip}`, at);
-  db.run('INSERT INTO login_attempts (key, at) VALUES (?, ?)', `ip:${ip}`, at);
+/**
+ * Попытка записывается ДО проверки пароля: параллельные запросы не могут все разом
+ * пройти лимит, пока bcrypt ещё считает. Возвращает метку, по которой попытку можно снять.
+ */
+export function reserveLoginAttempt(db, login, ip) {
+  const at = Date.now() * 1000 + Math.floor(Math.random() * 1000);   // уникальна в пределах миллисекунды
+  db.run('INSERT INTO login_attempts (key, at) VALUES (?, ?)', `l:${login}|${ip}`, at / 1000);
+  db.run('INSERT INTO login_attempts (key, at) VALUES (?, ?)', `ip:${ip}`, at / 1000);
+  return at / 1000;
 }
 
-export function clearLoginFailures(db, login, ip) {
+/** Успешный вход: снимаем свою попытку с общего счётчика адреса и обнуляем счётчик логина. */
+export function clearLoginFailures(db, login, ip, at) {
   db.run('DELETE FROM login_attempts WHERE key = ?', `l:${login}|${ip}`);
+  if (at !== undefined) db.run('DELETE FROM login_attempts WHERE key = ? AND at = ?', `ip:${ip}`, at);
 }
+
+// Одновременно считаем не больше нескольких bcrypt: вход нельзя превратить в нагрузку на процессор.
+const MAX_PARALLEL_CHECKS = 6;
+let activeChecks = 0;
+export async function withPasswordSlot(fn) {
+  if (activeChecks >= MAX_PARALLEL_CHECKS) {
+    throw new HttpError(503, 'Сервер занят. Попробуйте через несколько секунд.', { retryAfter: 5 });
+  }
+  activeChecks++;
+  try { return await fn(); } finally { activeChecks--; }
+}
+
+/** bcrypt учитывает только первые 72 байта пароля — длиннее не принимаем, чтобы «хвост» не игнорировался молча. */
+export const tooLongForBcrypt = (pw) => Buffer.byteLength(pw, 'utf8') > 72;
 
 export function cleanup(db) {
   db.run('DELETE FROM sessions WHERE expires_at < ?', Date.now());
@@ -107,7 +128,11 @@ export function cleanup(db) {
 // Хеш «никакого» пароля: сравниваем с ним, когда логина нет, чтобы время ответа
 // не выдавало, существует ли такой пользователь.
 let dummyHash;
-export async function verifyAgainstDummy(pw) {
+/** Считаем хеш-пустышку один раз при запуске, а не на первом чужом запросе. */
+export async function warmUp() {
   dummyHash ??= await hashPassword(randomId(12));
+}
+export async function verifyAgainstDummy(pw) {
+  await warmUp();
   await verifyPassword(pw, dummyHash);
 }

@@ -68,7 +68,8 @@ export async function loginView({ onLogin }) {
           pw.select();
         }
       });
-      root.querySelector('#login').focus();
+      // На телефоне не открываем клавиатуру сами: пусть сначала будет виден весь экран входа.
+      if (window.matchMedia('(pointer: fine)').matches) root.querySelector('#login').focus();
     },
   };
 }
