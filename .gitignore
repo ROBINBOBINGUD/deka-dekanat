@@ -1,0 +1,26 @@
+# секреты
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+id_*
+*.pub
+
+# зависимости и окружения
+node_modules/
+.venv/
+__pycache__/
+
+# данные и логи
+data/
+*.db
+*.db-wal
+*.db-shm
+*.sqlite
+*.log
+
+# отладка
+.playwright-mcp/
+tmp/
+*.dump.html
